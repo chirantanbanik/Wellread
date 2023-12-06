@@ -1,22 +1,22 @@
 import React, {useCallback} from 'react'
 import {useForm} from "react-hook-form"
-import {Button, Input, Select, RTE} from "../index"
+import {Button, Input, RTE} from ".."
 import appwriteService from "../../appwrite/config"
 import {useNavigate} from "react-router-dom"
 import {useSelector} from "react-redux"
 
-function PostForm({post}) {
+export default function PostForm({post}) {
     const {register, handleSubmit, watch, setValue, control, getValues} = useForm({
         defaultValues: {
             title: post?.title || "",
-            slug: post?.slug || "",
+            slug: post?.$id || "",
             content: post?.content || "",
             status: post?.status || "active",
         },
     })
 
     const navigate = useNavigate()
-    const userData = useSelector(state => state.user.userData)
+    const userData = useSelector((state) => state.auth.userData)
 
     const submit = async (data) => {
         if (post) {
@@ -33,7 +33,7 @@ function PostForm({post}) {
             })
 
                 if(dbPost){
-                    navigate(`/post/${post.$id}`)
+                    navigate(`/post/${dbPost.$id}`)
 
                 }       
             } else {
@@ -59,7 +59,7 @@ function PostForm({post}) {
             return value
             .trim()
             .toLowerCase()
-            .replace(/^[a-zA-Z\d\s]+/g, "-")
+            .replace(/[^a-zA-Z\d\s]+/g, "-")
             .replace(/\s/g, "-")
 
             return ""
@@ -88,16 +88,8 @@ function PostForm({post}) {
                     className="mb-4"
                     {...register("title", { required: true })}
                 />
-                <Input
-                    label="Slug :"
-                    placeholder="Slug"
-                    className="mb-4"
-                    {...register("slug", { required: true })}
-                    onInput={(e) => {
-                        setValue("slug", slugTransform(e.currentTarget.value), { shouldValidate: true });
-                    }}
-                />
-                <RTE label="Content :" name="content" control={control} defaultValue={getValues("content")} />
+                
+                <RTE label="Write your feelings down :" name="content" control={control} defaultValue={getValues("content")} />
             </div>
             <div className="w-1/3 px-2">
                 <Input
@@ -116,12 +108,7 @@ function PostForm({post}) {
                         />
                     </div>
                 )}
-                <Select
-                    options={["active", "inactive"]}
-                    label="Status"
-                    className="mb-4"
-                    {...register("status", { required: true })}
-                />
+                
                 <Button type="submit" bgColor={post ? "bg-green-500" : undefined} className="w-full">
                     {post ? "Update" : "Submit"}
                 </Button>
@@ -130,4 +117,4 @@ function PostForm({post}) {
     );
 }
     
-export default PostForm
+
