@@ -8,7 +8,6 @@ function AddPost() {
       <Container>
         <PostForm/>
       </Container>
-      
     </div>
   )
 }

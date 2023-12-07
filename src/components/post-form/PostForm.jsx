@@ -9,9 +9,9 @@ export default function PostForm({post}) {
     const {register, handleSubmit, watch, setValue, control, getValues} = useForm({
         defaultValues: {
             title: post?.title || "",
-            slug: post?.$id || "",
+            // slug: post?.$id || "",
             content: post?.content || "",
-            status: post?.status || "active",
+            // status: post?.status || "active",
         },
     })
 
@@ -20,7 +20,7 @@ export default function PostForm({post}) {
 
     const submit = async (data) => {
         if (post) {
-            const file = data.images[0] ? appwriteService.
+            const file = data.image[0] ? await appwriteService.
             uploadFile(data.image[0]) : null
 
             if(file){
@@ -34,7 +34,6 @@ export default function PostForm({post}) {
 
                 if(dbPost){
                     navigate(`/post/${dbPost.$id}`)
-
                 }       
             } else {
                 const file = await appwriteService.uploadFile
@@ -68,14 +67,14 @@ export default function PostForm({post}) {
     React.useEffect(() => {
         const subscription = watch((value, {name}) => {
             if(name === "title"){
-                setValue("slug", slugTransform(value.title,
-                    {shouldValidate: true}))
+                setValue("slug", slugTransform(value.title),
+                    {shouldValidate: true})
             }
         })
 
-        return () => {
+        return () => 
             subscription.unsubscribe()
-        }
+        
 
     }, [watch, slugTransform, setValue])
 
@@ -83,17 +82,17 @@ export default function PostForm({post}) {
         <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
             <div className="w-2/3 px-2">
                 <Input
-                    label="Title :"
+                    label="Title "
                     placeholder="Title"
                     className="mb-4"
                     {...register("title", { required: true })}
                 />
                 
-                <RTE label="Write your feelings down :" name="content" control={control} defaultValue={getValues("content")} />
+                <RTE label="Write your feelings down " name="content" control={control} defaultValue={getValues("content")} />
             </div>
             <div className="w-1/3 px-2">
                 <Input
-                    label="Featured Image :"
+                    label="Featured Image "
                     type="file"
                     className="mb-4"
                     accept="image/png, image/jpg, image/jpeg, image/gif"
