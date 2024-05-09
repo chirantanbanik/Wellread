@@ -2,7 +2,7 @@
 A blogging application for creative people to express their feelings, thoughts and ideas.
 
 ### Tech Stack
-**Client**: Reactjs, Tailwind css 
+**Client**: Reactjs, Redux-toolkit, Tailwind css 
 
 **Server:** Appwrite
 
