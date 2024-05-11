@@ -31,7 +31,7 @@ function App() {
     <div className='min-h-screen flex flex-wrap content-between'>
       {authStatus ? (
         <div className='w-full block'>
-          {/* <Header /> */}
+          <Header />
           <main>
             <br />
             <br />
