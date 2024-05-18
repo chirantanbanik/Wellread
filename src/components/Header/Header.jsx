@@ -15,7 +15,7 @@ function Header() {
     //   active: true
     // }, 
     {
-      name: "Login",
+      name: "Pogin",
       slug: "/login",
       active: !authStatus,
   },
