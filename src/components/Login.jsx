@@ -5,7 +5,7 @@ import {Button, Input, Logo} from "./index"
 import { useDispatch } from 'react-redux'
 import authService from "../appwrite/auth"
 import {useForm} from "react-hook-form"
-
+import toast from "react-hot-toast";
 function Login() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -23,7 +23,23 @@ function Login() {
                 navigate("/")
             }
         } catch(error){
-            setError(error.message)
+            console.log(error.type,"errrr");
+            // toast.error(error.message);
+            toast.error(error.message, {
+                style: {
+                  border: '1px solid #713200',
+                  padding: '16px',
+                  fontSize:'15px',
+                  color: '#ffffff',
+                  background: '#f94449',
+                  border:'#ffffff'
+                },
+                iconTheme: {
+                  primary: '#d1001f',
+                  secondary: '#FFFAEE',
+                },
+              });
+            setError(error.message);
         }
     }
 
@@ -48,8 +64,8 @@ function Login() {
                         Sign Up
                     </Link>
         </p>
-        {error && <p className='text-red-500 mt-8 text-center'>
-            {error}</p>}
+        {/* {toast.error(error)} */}
+        {/* {error && <p className='text-red-500 mt-8 text-center'>{error}</p>} */}
             <form onSubmit={handleSubmit(login)}
             className='mt-8'>
                 <div className='space-y-5'>
