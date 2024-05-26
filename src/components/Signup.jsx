@@ -4,16 +4,16 @@ import {Link, useNavigate} from "react-router-dom"
 import {login} from "../store/authSlice"
 import {Button, Input, Logo} from "./index.js"
 import { useDispatch } from 'react-redux'
-import {useForm} from "react-hook-form"
+import {useForm} from "react-hook-form";
+import toast from "react-hot-toast";
 
 function Signup() {
     const navigate = useNavigate()
     const [error, setError] = useState("")
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
     const {register, handleSubmit} = useForm()
 
     const create = async(data) => {
-        setError("")
         try {
            const userData = await authService.createAccount(data)
            if(userData){
@@ -23,6 +23,19 @@ function Signup() {
            }
 
         } catch(error){
+            toast.error('Password must have a minimum of 8 characters.', {
+
+                style: {
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'start'
+                },
+                iconTheme: {
+                    primary: 'red', // Set the color of the icon if it's a SVG
+                    secondary: 'white', // Background color of the icon, useful if you use SVGs
+                    marginleft:"5px"
+                },
+            });
             setError(error.message)
         }
     }
@@ -46,8 +59,6 @@ function Signup() {
                             Login
                         </Link>
                     </p>
-                    {error && <p className='text-red-600 mt-8 text-center'>{error}</p>}
-    
                     <form onSubmit={handleSubmit(create)}>
                         <div className='space-y-5'>
                             <Input

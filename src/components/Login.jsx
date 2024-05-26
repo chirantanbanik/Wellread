@@ -13,7 +13,6 @@ function Login() {
     const [error, setError] = useState("")
 
     const login = async(data) => {
-        setError("")
         try{
             const session = await authService.login(data)
             if(session){
@@ -23,22 +22,7 @@ function Login() {
                 navigate("/")
             }
         } catch(error){
-            console.log(error.type,"errrr");
-            // toast.error(error.message);
-            toast.error(error.message, {
-                style: {
-                  border: '1px solid #713200',
-                  padding: '16px',
-                  fontSize:'15px',
-                  color: '#ffffff',
-                  background: '#f94449',
-                  border:'#ffffff'
-                },
-                iconTheme: {
-                  primary: '#d1001f',
-                  secondary: '#FFFAEE',
-                },
-              });
+            toast.error(error.message);
             setError(error.message);
         }
     }
@@ -64,8 +48,6 @@ function Login() {
                         Sign Up
                     </Link>
         </p>
-        {/* {toast.error(error)} */}
-        {/* {error && <p className='text-red-500 mt-8 text-center'>{error}</p>} */}
             <form onSubmit={handleSubmit(login)}
             className='mt-8'>
                 <div className='space-y-5'>
