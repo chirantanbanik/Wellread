@@ -5,7 +5,7 @@ import {Button, Input, Logo} from "./index"
 import { useDispatch } from 'react-redux'
 import authService from "../appwrite/auth"
 import {useForm} from "react-hook-form"
-
+import toast from "react-hot-toast";
 function Login() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -13,7 +13,6 @@ function Login() {
     const [error, setError] = useState("")
 
     const login = async(data) => {
-        setError("")
         try{
             const session = await authService.login(data)
             if(session){
@@ -23,7 +22,8 @@ function Login() {
                 navigate("/")
             }
         } catch(error){
-            setError(error.message)
+            toast.error(error.message);
+            setError(error.message);
         }
     }
 
@@ -48,8 +48,6 @@ function Login() {
                         Sign Up
                     </Link>
         </p>
-        {error && <p className='text-red-500 mt-8 text-center'>
-            {error}</p>}
             <form onSubmit={handleSubmit(login)}
             className='mt-8'>
                 <div className='space-y-5'>

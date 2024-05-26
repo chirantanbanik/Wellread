@@ -23,7 +23,8 @@ export class AuthService {
                return userAccount;
             }
         } catch (error) {
-            throw error;
+                throw new Error("Password must be longer than 8 characters.");
+        
         }
     }
 
@@ -31,7 +32,7 @@ export class AuthService {
         try {
             return await this.account.createEmailSession(email, password);
         } catch (error) {
-            throw error;
+            throw new Error("Incorrect credentials. Please try again.");
         }
     }
 

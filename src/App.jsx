@@ -4,7 +4,8 @@ import './App.css'
 import authService from "./appwrite/auth"
 import {login, logout} from "./store/authSlice"
 import { Outlet } from 'react-router-dom'
-import { Footer, Header } from "./components"
+import { Footer, Header } from "./components";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   const [loading, setLoading] = useState(true)
@@ -33,6 +34,7 @@ function App() {
         </main>
         <Footer />    
       </div>
+      <Toaster></Toaster>
     </div>
   ) : null
 }
