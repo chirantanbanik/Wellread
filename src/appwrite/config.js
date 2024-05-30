@@ -14,8 +14,24 @@ export class Service{
             this.bucket = new Storage(this.client)
     }
 
-    async createPost({title, slug, content, featuredImage, status, userId}){
-        try{
+    async createPost({ title, slug, content, featuredImage, status, userId, author }) {
+        try {
+            // Check if a post with the same title already exists
+            const response = await this.databases.listDocuments(
+                conf.appwriteDatabaseId,
+                conf.appwriteCollectionId,
+                [
+                    // This is assuming the field name in your database is "title"
+                    Query.equal('title', title),
+                ]
+            );
+    
+            if (response.total > 0) {
+                // If a post with the same title exists, throw an error
+                throw new Error("A post with this title already exists. Please choose a different title.");
+            }
+    
+            // Create the post if the title is unique
             return await this.databases.createDocument(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
@@ -26,16 +42,34 @@ export class Service{
                     featuredImage,
                     status,
                     userId,
+                    author
                 }
-            )
-
-        } catch(error){
-            console.log("Apwrite service :: createPost :: error", error)
+            );
+        } catch (error) {
+            console.log("Appwrite service :: createPost :: error", error);
+            throw error;
         }
     }
+    
 
-    async updatePost(slug, {title, content, featuredImage, status}){
-          try{
+    async updatePost(slug, { title, content, featuredImage, status, author }) {
+        try {
+            // Check if a post with the same title already exists
+            const response = await this.databases.listDocuments(
+                conf.appwriteDatabaseId,
+                conf.appwriteCollectionId,
+                [
+                    Query.equal('title', title),
+                    Query.notEqual('$id', slug), // Exclude the current post from the search
+                ]
+            );
+    
+            if (response.total > 0) {
+                // If a post with the same title exists (excluding the current post), throw an error
+                throw new Error("A post with this title already exists. Please choose a different title.");
+            }
+    
+            // Update the post if the title is unique
             return await this.databases.updateDocument(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
@@ -44,15 +78,16 @@ export class Service{
                     title,
                     content,
                     featuredImage,
-                    status
+                    status,
+                    author
                 }
-            )
-
-          } catch(error){
-            console.log("Appwrite service :: updatePost :: error", error)
-
+            );
+        } catch (error) {
+            console.log("Appwrite service :: updatePost :: error", error);
+            throw error;
         }
     }
+    
 
     async deletePost(slug){
         try{
