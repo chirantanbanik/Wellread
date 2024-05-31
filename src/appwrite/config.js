@@ -1,10 +1,12 @@
 import conf from "../conf/conf.js"
-import { Client, ID, Databases, Storage, Query } from "appwrite"
+import { Account, Client, ID, Databases, Storage, Query } from "appwrite"
+import authService from "./auth.js"
 
 export class Service{
     client = new Client()
     databases
     bucket
+    account
 
     constructor(){
         this.client
@@ -12,31 +14,18 @@ export class Service{
             .setProject(conf.appwriteProjectId)
             this.databases = new Databases(this.client)
             this.bucket = new Storage(this.client)
+            this.account = new Account(this.client);
     }
 
-    async createPost({ title, slug, content, featuredImage, status, userId, author }) {
-        try {
-            // Check if a post with the same title already exists
-            const response = await this.databases.listDocuments(
-                conf.appwriteDatabaseId,
-                conf.appwriteCollectionId,
-                [
-                    // This is assuming the field name in your database is "title"
-                    Query.equal('title', title),
-                ]
-            );
-    
-            if (response.total > 0) {
-                // If a post with the same title exists, throw an error
-                throw new Error("A post with this title already exists. Please choose a different title.");
-            }
-    
-            // Create the post if the title is unique
+    async createPost({title, slug, content, featuredImage, status, userId,author}){
+        try{
+          
             return await this.databases.createDocument(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
                 slug,
                 {
+
                     title,
                     content,
                     featuredImage,
@@ -44,32 +33,15 @@ export class Service{
                     userId,
                     author
                 }
-            );
-        } catch (error) {
-            console.log("Appwrite service :: createPost :: error", error);
-            throw error;
+            )
+
+        } catch(error){
+            console.log("Apwrite service :: createPost :: error", error)
         }
     }
-    
 
-    async updatePost(slug, { title, content, featuredImage, status, author }) {
-        try {
-            // Check if a post with the same title already exists
-            const response = await this.databases.listDocuments(
-                conf.appwriteDatabaseId,
-                conf.appwriteCollectionId,
-                [
-                    Query.equal('title', title),
-                    Query.notEqual('$id', slug), // Exclude the current post from the search
-                ]
-            );
-    
-            if (response.total > 0) {
-                // If a post with the same title exists (excluding the current post), throw an error
-                throw new Error("A post with this title already exists. Please choose a different title.");
-            }
-    
-            // Update the post if the title is unique
+    async updatePost(slug, {title, content, featuredImage, status,author}){
+          try{
             return await this.databases.updateDocument(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
@@ -81,13 +53,13 @@ export class Service{
                     status,
                     author
                 }
-            );
-        } catch (error) {
-            console.log("Appwrite service :: updatePost :: error", error);
-            throw error;
+            )
+
+          } catch(error){
+            console.log("Appwrite service :: updatePost :: error", error)
+
         }
     }
-    
 
     async deletePost(slug){
         try{
@@ -169,6 +141,105 @@ export class Service{
             fileId
         )
     }
+
+    async createProfile({ username, bio, profilepic, userID }) {
+        try {
+            // Check if a profile already exists for the user
+            const profiles = await this.databases.listDocuments(
+                conf.appwriteDatabaseId,
+                conf.appwriteUserId,
+                [Query.equal('userID', userID)]
+            );
+
+            if (profiles.total > 0) {
+                throw new Error("Profile already exists");
+            }
+
+            // Create a new profile
+            return await this.databases.createDocument(
+                conf.appwriteDatabaseId,
+                conf.appwriteUserId,
+                ID.unique(),
+                {
+                    username,
+                    bio,
+                    profilepic,
+                    userID
+                }
+            );
+        } catch (error) {
+            console.log("Appwrite service :: createProfile :: error", error);
+            throw error;
+        }
+    }
+
+    async getProfile(userId) {
+        try {
+            const profiles = await this.databases.listDocuments(
+                conf.appwriteDatabaseId,
+                conf.appwriteUserId,
+                [Query.equal('userID', userId)]
+            );
+
+            if (profiles.total > 0) {
+                return profiles.documents[0];
+            } else {
+                return null; // Return null if no profile is found
+            }
+        } catch (error) {
+            console.log("Appwrite service :: getProfile :: error", error);
+            throw error;
+        }
+    }
+
+    async updateUserProfile({ username, bio, profilePic }) {
+        try {
+            const currentUser = await authService.getCurrentUser();
+            if (!currentUser) {
+                throw new Error("User not logged in");
+            }
+            const userId = currentUser.$id;
+
+            console.log(`Updating user profile for user ID: ${userId}`);
+
+            // Fetch the profile document using user ID
+            const profiles = await this.databases.listDocuments(
+                conf.appwriteDatabaseId,
+                conf.appwriteUserId,
+                [Query.equal('userID', userId)]
+            );
+
+            if (profiles.total === 0) {
+                throw new Error("Profile not found");
+            }
+
+            const profileDocId = profiles.documents[0].$id;
+
+            // Update the profile document in the Profiles collection
+            await this.databases.updateDocument(
+                conf.appwriteDatabaseId,
+                conf.appwriteUserId,
+                profileDocId,
+                {
+                    username,
+                    bio,
+                    profilepic: profilePic,
+                }
+            );
+
+            // Update the name attribute in the Appwrite user account
+            await this.account.updateName(username);  
+
+            console.log("User profile updated successfully");
+
+        } catch (error) {
+            console.error("Failed to update user profile", error);
+            throw error;
+        }
+    }
+
+
+
 }
 
 const service = new Service()

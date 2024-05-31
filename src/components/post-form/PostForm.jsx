@@ -28,7 +28,7 @@ export default function PostForm({ post }) {
                 const updatedPostData = {
                     ...data,
                     featuredImage: file ? file.$id : undefined,
-                    author: post.author, // Keep the existing author
+                    author: userData.name, // Keep the existing author
                 };
 
                 const dbPost = await appwriteService.updatePost(post.$id, updatedPostData);
