@@ -37,7 +37,7 @@ function Header() {
   },
   {
     name: "Profile",
-    slug: `/profile/${userData.$id}`,
+    slug: userData ? `/profile/${userData.$id}` : "/",
     active: authStatus,
 },
   ]

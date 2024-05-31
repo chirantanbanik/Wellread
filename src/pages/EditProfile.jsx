@@ -21,7 +21,8 @@ export default function EditProfile() {
                 bio: data.bio,
                 profilePic: profilePic // Pass the file ID to updateUserProfile
             });
-            navigate(`/profile/${userData.$id}`);
+            if(userData){
+            navigate(`/profile/${userData.$id}`);}
         } catch (error) {
             console.error('Failed to update profile', error);
         }

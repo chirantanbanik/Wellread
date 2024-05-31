@@ -9,7 +9,10 @@ function Home() {
 
     const userData = useSelector((state) => state.auth.userData);
     const [profileChecked, setProfileChecked] = useState(false);
- 
+
+    function refreshPage(){ 
+        window.location.reload(); 
+    }
    
     
     useEffect(() => {
@@ -46,6 +49,7 @@ function Home() {
         checkAndCreateProfile();
     }, [userData, profileChecked]);
     
+
     useEffect(() => {
         appwriteService.getPosts().then((posts) => {
             if(posts){
@@ -53,14 +57,18 @@ function Home() {
             }
         })
     }, [])
+
+
+
     if(posts.length === 0){
+
         return (
             <div className="w-full py-8 mt-4 text-center">
                 <Container>
                     <div className="flex flex-wrap">
                         <div className="p-2 w-full">
                             <h1 className="text-2xl font-bold hover:text-blue-500">
-                                
+                            <button type="button" onClick={ refreshPage }> <span>Reload</span> </button> 
                             </h1>
                         </div>
                     </div>

@@ -18,7 +18,7 @@ export default function PostForm({ post }) {
 
     const submit = async (data) => {
         try {
-            if (post) {
+            if (post && userData) {
                 const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null;
 
                 if (file) {
@@ -39,7 +39,7 @@ export default function PostForm({ post }) {
             } else {
                 const file = await appwriteService.uploadFile(data.image[0]);
 
-                if (file) {
+                if (file && userData) {
                     const newPostData = {
                         ...data,
                         featuredImage: file.$id,
