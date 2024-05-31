@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import appwriteService from '../appwrite/config';
 import { useNavigate } from 'react-router-dom';
 import { Button, Input, RTE } from '../components';
-
+//edit profile feature added
 export default function EditProfile() {
     const { register, handleSubmit, setValue, control } = useForm();
     const navigate = useNavigate();
