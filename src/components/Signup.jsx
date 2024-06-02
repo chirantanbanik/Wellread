@@ -1,101 +1,124 @@
-import React, {useState} from 'react'
-import authService from "../appwrite/auth"
-import {Link, useNavigate} from "react-router-dom"
-import {login} from "../store/authSlice"
-import {Button, Input, Logo} from "./index.js"
-import { useDispatch } from 'react-redux'
-import {useForm} from "react-hook-form";
+import React, { useState } from 'react';
+import authService from "../appwrite/auth";
+import { Link, useNavigate } from "react-router-dom";
+import { login } from "../store/authSlice";
+import { Button, Input, Logo } from "./index.js";
+import { useDispatch } from 'react-redux';
+import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
 function Signup() {
-    const navigate = useNavigate()
-    const [error, setError] = useState("")
+    const navigate = useNavigate();
+    const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
     const dispatch = useDispatch();
-    const {register, handleSubmit} = useForm()
+    const { register, handleSubmit } = useForm();
 
-    const create = async(data) => {
+    const checkEmail = async (email) => {
         try {
-           const userData = await authService.createAccount(data)
-           if(userData){
-            const userData = await authService.getCurrentUser()
-            if(userData) dispatch(login(userData))
-            navigate("/")
-           }
+            const response = await fetch(`https://disposable.debounce.io/?email=${email}`);
+            const data = await response.json();
+            return data.disposable === "false";
+        } catch (error) {
+            console.error('Error:', error);
+            toast.error("An error occurred while checking the email.");
+            return false;
+        }
+    };
 
-        } catch(error){
+    const create = async (data) => {
+        setLoading(true);
+        const isEmailValid = await checkEmail(data.email);
+        if (!isEmailValid) {
+            toast.error('Disposable email addresses are not allowed.');
+            setLoading(false);
+            return;
+        }
+
+        try {
+            const userData = await authService.createAccount(data);
+            if (userData) {
+                const currentUser = await authService.getCurrentUser();
+                if (currentUser) dispatch(login(currentUser));
+                navigate("/");
+            }
+        } catch (error) {
             toast.error('Password must have a minimum of 8 characters.', {
-
                 style: {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'start'
                 },
                 iconTheme: {
-                    primary: 'red', // Set the color of the icon if it's a SVG
-                    secondary: 'white', // Background color of the icon, useful if you use SVGs
-                    marginleft:"5px"
+                    primary: 'red',
+                    secondary: 'white',
+                    marginleft: "5px"
                 },
             });
-            setError(error.message)
+            setError(error.message);
         }
-    }
+        setLoading(false);
+    };
 
     return (
-        <div 
-        className="flex items-center justify-center w-full">
-                <div className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}>
+        <div className="flex items-center justify-center w-full">
+            <div className="mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10">
                 <div className="mb-2 flex justify-center">
-                        <span className="inline-block w-full max-w-[100px]">
-                            <Logo width="100%" />
-                        </span>
-                    </div>
-                    <h2 className="text-center text-2xl font-bold leading-tight">Sign up to create account</h2>
-                    <p className="mt-2 text-center text-base text-black/60">
-                        Already have an account?&nbsp;
-                        <Link
-                            to="/login"
-                            className="font-medium text-primary transition-all duration-200 hover:underline"
-                        >
-                            Login
-                        </Link>
-                    </p>
-                    <form onSubmit={handleSubmit(create)}>
-                        <div className='space-y-5'>
-                            <Input
+                    <span className="inline-block w-full max-w-[100px]">
+                        <Logo width="100%" />
+                    </span>
+                </div>
+                <h2 className="text-center text-2xl font-bold leading-tight">Sign up to create account</h2>
+                <p className="mt-2 text-center text-base text-black/60">
+                    Already have an account?&nbsp;
+                    <Link
+                        to="/login"
+                        className="font-medium text-primary transition-all duration-200 hover:underline"
+                    >
+                        Login
+                    </Link>
+                </p>
+                <form onSubmit={handleSubmit(create)}>
+                    <div className='space-y-5'>
+                        <Input
                             label="Full Name: "
                             placeholder="Enter your Full Name"
                             {...register("name", {
                                 required: true
                             })}
-                            />
-                            <Input
-                        label="Email: "
-                        placeholder="Enter your Email"
-                        type="email"
-                        {...register("email", {
-                            required: true,
-                            validate: {
-                                matchPattern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
-                                "Email address must be a valid address",     
-                            }
-                        })}
                         />
                         <Input
-                        label="Password: "
-                        type="password"
-                        placeholder="Enter your password"
-                        {...register("password", {
-                            required: true,})}
+                            label="Email: "
+                            placeholder="Enter your Email"
+                            type="email"
+                            {...register("email", {
+                                required: true,
+                                validate: {
+                                    matchPattern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
+                                        "Email address must be a valid address",
+                                }
+                            })}
+                        />
+                        <Input
+                            label="Password: "
+                            type="password"
+                            placeholder="Enter your password"
+                            {...register("password", {
+                                required: true,
+                            })}
                         />
                         <Button
-                        type="submit"
-                        className="w-full"
-                        >Create Account</Button>
-                        </div>
-                    </form>
-                </div>
+                            type="submit"
+                            className="w-full"
+                            disabled={loading}
+                        >
+                            {loading ? 'Creating Account...' : 'Create Account'}
+                        </Button>
+                    </div>
+                </form>
             </div>
-        )
-    }
-    
-    export default Signup
+        </div>
+    );
+}
+
+export default Signup;
