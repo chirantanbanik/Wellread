@@ -6,11 +6,14 @@ import { useDispatch } from 'react-redux'
 import authService from "../appwrite/auth"
 import {useForm} from "react-hook-form"
 import toast from "react-hot-toast";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+
 function Login() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const {register, handleSubmit} = useForm()
-    const [error, setError] = useState("")
+    const [error, setError] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
 
     const login = async(data) => {
         try{
@@ -27,6 +30,10 @@ function Login() {
         }
     }
 
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
+
 
   return (
     <div
@@ -39,20 +46,12 @@ function Login() {
                 </span>
            </div>
            <h2 className="text-center text-2xl font-bold leading-tight">Login to your account</h2>
-           <p className="mt-2 text-center text-base text-black/60">
-                    Don&apos;t have any account?&nbsp;
-                    <Link
-                        to="/signup"
-                        className="font-medium text-primary transition-all duration-200 hover:underline"
-                    >
-                        Sign Up
-                    </Link>
-        </p>
             <form onSubmit={handleSubmit(login)}
             className='mt-8'>
                 <div className='space-y-5'>
+                    <div className='space-y-2'>
+                    <div className='text-left font-medium ml-1'>Email: </div>
                     <Input
-                    label="Email: "
                     placeholder="Enter your Email"
                     type="email"
                     {...register("email", {
@@ -63,18 +62,39 @@ function Login() {
                         }
                     })}
                     />
+                    </div>
+                    <div className='space-y-2'>
+                    <div className='text-left font-medium ml-1'>Password: </div>
+                    <div className="relative">
                     <Input
-                label="Password: "
-                type="password"
-                placeholder="Enter your password"
-                {...register("password", {
-                    required: true,
-                })}
-                />
+                      type={showPassword ? 'text' : 'password'}
+                      placeholder="Enter your password"
+                      {...register("password", {
+                        required: true,
+                      })}
+                      
+                    />
+                    <span
+                     onClick={togglePasswordVisibility}
+                     className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer"
+                    >
+                    {showPassword ? <FaEye /> : <FaEyeSlash />}
+                    </span>
+                    </div>
+                    </div>
                 <Button
                 type="submit"
                 className="w-full"
                 >Login</Button>
+                <p className="mt-2 text-center text-base text-black/60">
+                    Don&apos;t have any account?&nbsp;
+                    <Link
+                        to="/signup"
+                        className="font-medium text-primary transition-all duration-200 hover:underline"
+                    >
+                        Sign Up
+                    </Link>
+        </p>
                 </div>
             </form>
         </div>
