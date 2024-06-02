@@ -6,6 +6,8 @@ import { Button, Input, Logo } from "./index.js";
 import { useDispatch } from 'react-redux';
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+
 
 function Signup() {
     const navigate = useNavigate();
@@ -13,6 +15,8 @@ function Signup() {
     const [loading, setLoading] = useState(false);
     const dispatch = useDispatch();
     const { register, handleSubmit } = useForm();
+    const [showPassword, setShowPassword] = useState(false);
+
 
     const checkEmail = async (email) => {
         try {
@@ -26,6 +30,7 @@ function Signup() {
         }
     };
 
+
     const create = async (data) => {
         setLoading(true);
         const isEmailValid = await checkEmail(data.email);
@@ -34,6 +39,7 @@ function Signup() {
             setLoading(false);
             return;
         }
+
 
         try {
             const userData = await authService.createAccount(data);
@@ -60,6 +66,12 @@ function Signup() {
         setLoading(false);
     };
 
+
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
+
+
     return (
         <div className="flex items-center justify-center w-full">
             <div className="mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10">
@@ -69,26 +81,20 @@ function Signup() {
                     </span>
                 </div>
                 <h2 className="text-center text-2xl font-bold leading-tight">Sign up to create account</h2>
-                <p className="mt-2 text-center text-base text-black/60">
-                    Already have an account?&nbsp;
-                    <Link
-                        to="/login"
-                        className="font-medium text-primary transition-all duration-200 hover:underline"
-                    >
-                        Login
-                    </Link>
-                </p>
-                <form onSubmit={handleSubmit(create)}>
+                <form onSubmit={handleSubmit(create)} className='mt-8'>
                     <div className='space-y-5'>
+                        <div className='space-y-2'>
+                        <div className='text-left font-medium ml-1'>Full Name: </div>
                         <Input
-                            label="Full Name: "
                             placeholder="Enter your Full Name"
                             {...register("name", {
                                 required: true
                             })}
                         />
+                        </div>
+                        <div className='space-y-2'>
+                        <div className='text-left font-medium ml-1'>Email: </div>
                         <Input
-                            label="Email: "
                             placeholder="Enter your Email"
                             type="email"
                             {...register("email", {
@@ -99,14 +105,26 @@ function Signup() {
                                 }
                             })}
                         />
-                        <Input
-                            label="Password: "
-                            type="password"
-                            placeholder="Enter your password"
-                            {...register("password", {
-                                required: true,
-                            })}
-                        />
+                        </div>
+                        <div className='space-y-2'>
+                        <div className='text-left font-medium ml-1'>Password: </div>
+                        <div className="relative">
+                    <Input
+                      type={showPassword ? 'text' : 'password'}
+                      placeholder="Enter your password"
+                      {...register("password", {
+                        required: true,
+                      })}
+                     
+                    />
+                    <span
+                     onClick={togglePasswordVisibility}
+                     className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer"
+                    >
+                    {showPassword ? <FaEye /> : <FaEyeSlash />}
+                    </span>
+                    </div>
+                        </div>
                         <Button
                             type="submit"
                             className="w-full"
@@ -114,11 +132,19 @@ function Signup() {
                         >
                             {loading ? 'Creating Account...' : 'Create Account'}
                         </Button>
+                        <p className="mt-2 text-center text-base text-black/60">
+                             Already have an account?&nbsp;
+                          <Link
+                            to="/login"
+                            className="font-medium text-primary transition-all duration-200 hover:underline"
+                           > Login </Link>
+                        </p>
                     </div>
                 </form>
             </div>
         </div>
     );
 }
+
 
 export default Signup;
