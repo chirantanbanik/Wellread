@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
-import { Provider } from 'react-redux'
+import { Provider, useSelector } from 'react-redux'
 import store from "./store/store.js"
 import { AuthLayout, Login } from './components/index.js'
 import AddPost from "./pages/AddPost.jsx"
@@ -12,6 +12,10 @@ import Post from "./pages/Post.jsx"
 import AllPosts from "./pages/AllPosts.jsx"
 import Home from "./pages/Home.jsx"
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import Landing from './pages/Landing.jsx';
+
+
+
 
 const router = createBrowserRouter([
   {
@@ -20,7 +24,7 @@ const router = createBrowserRouter([
     children: [
         {
             path: "/",
-            element: <Home />,
+            element: <Landing />,
         },
         {
             path: "/login",
@@ -37,6 +41,14 @@ const router = createBrowserRouter([
                     <Signup />
                 </AuthLayout>
             ),
+        },
+        {
+           path: "/home",
+           element: (
+            <AuthLayout authentication>
+                <Home />
+            </AuthLayout>
+           )
         },
         {
             path: "/all-posts",
@@ -73,6 +85,7 @@ const router = createBrowserRouter([
 },
 ])
 
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
@@ -80,7 +93,3 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     </Provider>
   </React.StrictMode>,
 )
-
-
-
-
