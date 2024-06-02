@@ -39,20 +39,12 @@ function Login() {
                 </span>
            </div>
            <h2 className="text-center text-2xl font-bold leading-tight">Login to your account</h2>
-           <p className="mt-2 text-center text-base text-black/60">
-                    Don&apos;t have any account?&nbsp;
-                    <Link
-                        to="/signup"
-                        className="font-medium text-primary transition-all duration-200 hover:underline"
-                    >
-                        Sign Up
-                    </Link>
-        </p>
             <form onSubmit={handleSubmit(login)}
             className='mt-8'>
                 <div className='space-y-5'>
+                    <div className='space-y-2'>
+                    <div className='text-left font-medium ml-1'>Email: </div>
                     <Input
-                    label="Email: "
                     placeholder="Enter your Email"
                     type="email"
                     {...register("email", {
@@ -63,18 +55,30 @@ function Login() {
                         }
                     })}
                     />
+                    </div>
+                    <div className='space-y-2'>
+                    <div className='text-left font-medium ml-1'>Password: </div>
                     <Input
-                label="Password: "
                 type="password"
                 placeholder="Enter your password"
                 {...register("password", {
                     required: true,
                 })}
                 />
+                </div>
                 <Button
                 type="submit"
                 className="w-full"
                 >Login</Button>
+                <p className="mt-2 text-center text-base text-black/60">
+                    Don&apos;t have any account?&nbsp;
+                    <Link
+                        to="/signup"
+                        className="font-medium text-primary transition-all duration-200 hover:underline"
+                    >
+                        Sign Up
+                    </Link>
+        </p>
                 </div>
             </form>
         </div>
