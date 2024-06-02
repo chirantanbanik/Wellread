@@ -9,18 +9,18 @@ function Header() {
   const navigate = useNavigate()
 
   const navItems = [
+    // {
+    //   name: 'Home',
+    //   slug: "/",
+    //   active: true
+    // }, 
     {
-      name: 'Home',
-      slug: "/",
-      active: true
-    }, 
-    {
-      name: "Features",
+      name: "Login",
       slug: "/login",
       active: !authStatus,
   },
   {
-      name: "About us",
+      name: "Signup",
       slug: "/signup",
       active: !authStatus,
   },
@@ -33,27 +33,27 @@ function Header() {
       name: "Add Post",
       slug: "/add-post",
       active: authStatus,
-  }
+  },
   ]
 
 
   return (
-    <header className='py-2 w-full rounded-xl items-center justify-center bg-blue-600 shadow'>
+    <header className='py-3 shadow bg-blue-600'>
       <Container>
-        <nav className='flex justify-between items-center'>
+        <nav className='flex'>
           <div className='mr-4'>
             <Link to='/'>
               <Logo width='70px'   />
 
               </Link>
           </div>
-          <ul className='flex items-center'>
+          <ul className='flex ml-auto'>
             {navItems.map((item) => 
             item.active ? (
               <li key={item.name}>
                 <button
                 onClick={() => navigate(item.slug)}
-                className='inline-bock px-8 py-2 duration-200 hover:bg-blue-100 hover:text-blue-600 rounded-full text-white text-md font-semibold'
+                className='inline-bock px-6 py-2 duration-200 hover:bg-blue-100 rounded-full'
                 >{item.name}</button>
               </li>
             ) : null
@@ -63,15 +63,7 @@ function Header() {
                 <LogoutBtn />
               </li>
             )}
-            
           </ul>
-          {
-              !authStatus && <button 
-                    onClick={() => navigate('/login')}
-              className='text-white bg-blue-700 rounded-full px-6 py-1 hover:bg-blue-800 hover:scale-105 transition-transform duration-200 font-semibold text-md items-center justify-center'>
-              Login
-            </button>
-            }
         </nav>
         </Container>
     </header>
