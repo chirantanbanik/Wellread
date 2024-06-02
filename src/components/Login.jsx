@@ -6,11 +6,14 @@ import { useDispatch } from 'react-redux'
 import authService from "../appwrite/auth"
 import {useForm} from "react-hook-form"
 import toast from "react-hot-toast";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+
 function Login() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const {register, handleSubmit} = useForm()
-    const [error, setError] = useState("")
+    const [error, setError] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
 
     const login = async(data) => {
         try{
@@ -26,6 +29,10 @@ function Login() {
             setError(error.message);
         }
     }
+
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
 
 
   return (
@@ -58,14 +65,23 @@ function Login() {
                     </div>
                     <div className='space-y-2'>
                     <div className='text-left font-medium ml-1'>Password: </div>
+                    <div className="relative">
                     <Input
-                type="password"
-                placeholder="Enter your password"
-                {...register("password", {
-                    required: true,
-                })}
-                />
-                </div>
+                      type={showPassword ? 'text' : 'password'}
+                      placeholder="Enter your password"
+                      {...register("password", {
+                        required: true,
+                      })}
+                      
+                    />
+                    <span
+                     onClick={togglePasswordVisibility}
+                     className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer"
+                    >
+                    {showPassword ? <FaEye /> : <FaEyeSlash />}
+                    </span>
+                    </div>
+                    </div>
                 <Button
                 type="submit"
                 className="w-full"

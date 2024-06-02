@@ -6,6 +6,7 @@ import { Button, Input, Logo } from "./index.js";
 import { useDispatch } from 'react-redux';
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 function Signup() {
     const navigate = useNavigate();
@@ -13,6 +14,7 @@ function Signup() {
     const [loading, setLoading] = useState(false);
     const dispatch = useDispatch();
     const { register, handleSubmit } = useForm();
+    const [showPassword, setShowPassword] = useState(false);
 
     const checkEmail = async (email) => {
         try {
@@ -60,6 +62,10 @@ function Signup() {
         setLoading(false);
     };
 
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
+
     return (
         <div className="flex items-center justify-center w-full">
             <div className="mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10">
@@ -96,13 +102,22 @@ function Signup() {
                         </div>
                         <div className='space-y-2'>
                         <div className='text-left font-medium ml-1'>Password: </div>
-                        <Input
-                            type="password"
-                            placeholder="Enter your password"
-                            {...register("password", {
-                                required: true,
-                            })}
-                        />
+                        <div className="relative">
+                    <Input
+                      type={showPassword ? 'text' : 'password'}
+                      placeholder="Enter your password"
+                      {...register("password", {
+                        required: true,
+                      })}
+                      
+                    />
+                    <span
+                     onClick={togglePasswordVisibility}
+                     className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer"
+                    >
+                    {showPassword ? <FaEye /> : <FaEyeSlash />}
+                    </span>
+                    </div>
                         </div>
                         <Button
                             type="submit"
