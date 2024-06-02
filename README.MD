@@ -92,3 +92,9 @@ npm run dev
 
 ## Project Author and Maintainer
 - [@chirantanbanik](https://www.linkedin.com/in/chirantanbanik/)
+
+## Our Contributors
+<a href="https://github.com/chirantanbanik/Wellread/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=chirantanbanik/Wellread" />
+</a>
+
