@@ -1,34 +1,57 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { FaThumbsUp, FaThumbsDown } from 'react-icons/fa';
-import appwriteService from "../appwrite/config"; 
+import service from '../conf/service';
 
 function PostCard({ $id, title, featuredImage }) {
   const [likes, setLikes] = useState(0);
   const [dislikes, setDislikes] = useState(0);
-  const [userChoice, setUserChoice] = useState(null); // 'like' or 'dislike'
+  const [userChoice, setUserChoice] = useState(null);
 
-  const handleLike = (e) => {
+  useEffect(() => {
+    const fetchLikesDislikes = async () => {
+      const post = await service.getPost($id);
+      if (post) {
+        setLikes(post.likes);
+        setDislikes(post.dislikes);
+      }
+    };
+    fetchLikesDislikes();
+  }, [$id]);
+
+  const handleLike = async (e) => {
     e.preventDefault();
     if (userChoice === null) {
-      setLikes(likes + 1);
+      const newLikes = likes + 1;
+      setLikes(newLikes);
       setUserChoice('like');
+      await service.updateLikes($id, newLikes);
     } else if (userChoice === 'dislike') {
-      setDislikes(dislikes - 1);
-      setLikes(likes + 1);
+      const newLikes = likes + 1;
+      const newDislikes = dislikes - 1;
+      setLikes(newLikes);
+      setDislikes(newDislikes);
       setUserChoice('like');
+      await service.updateLikes($id, newLikes);
+      await service.updateDislikes($id, newDislikes);
     }
   };
 
-  const handleDislike = (e) => {
+  const handleDislike = async (e) => {
     e.preventDefault();
     if (userChoice === null) {
-      setDislikes(dislikes + 1);
+      const newDislikes = dislikes + 1;
+      setDislikes(newDislikes);
       setUserChoice('dislike');
+      await service.updateDislikes($id, newDislikes);
     } else if (userChoice === 'like') {
-      setLikes(likes - 1);
-      setDislikes(dislikes + 1);
+      const newLikes = likes - 1;
+      const newDislikes = dislikes + 1;
+      setLikes(newLikes);
+      setDislikes(newDislikes);
       setUserChoice('dislike');
+      await service.updateLikes($id, newLikes);
+      await service.updateDislikes($id, newDislikes);
     }
   };
 
@@ -37,7 +60,7 @@ function PostCard({ $id, title, featuredImage }) {
       <div className='w-full bg-white rounded-xl p-4 shadow-md'>
         <div className='w-full justify-center mb-4'>
           <img
-            src={appwriteService.getFilePreview(featuredImage)}
+            src={featuredImage}
             alt={title}
             className='rounded-xl w-full h-48 object-cover'
           />
