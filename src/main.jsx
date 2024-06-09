@@ -11,10 +11,10 @@ import EditPost from "./pages/EditPost.jsx"
 import Post from "./pages/Post.jsx"
 import AllPosts from "./pages/AllPosts.jsx"
 import Home from "./pages/Home.jsx"
+import UserProfile from './pages/UserProfile.jsx'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import EditProfile from './pages/EditProfile.jsx'
 import Landing from './pages/Landing.jsx';
-
-
 
 
 const router = createBrowserRouter([
@@ -81,6 +81,25 @@ const router = createBrowserRouter([
             path: "/post/:slug",
             element: <Post />,
         },
+
+        {
+            path: "/edit-profile",
+            element: (
+               
+                    <EditProfile />
+            ),
+        },
+        {
+            path: "/profile/:userId",
+            element: (
+               
+                    <UserProfile />
+            ),
+        },
+
+
+
+        
     ],
 },
 ])
