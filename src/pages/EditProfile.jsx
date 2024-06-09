@@ -9,7 +9,6 @@ export default function EditProfile() {
     const { register, handleSubmit, setValue, control } = useForm();
     const navigate = useNavigate();
     const userData = useSelector((state) => state.auth.userData);
-
     const onSubmit = async (data) => {
         try {
             const file = data.profilePic[0]; // Get the file object
