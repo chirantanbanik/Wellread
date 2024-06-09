@@ -37,7 +37,7 @@ function Login() {
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
-    const onClose = () => {
+    const onClose = () => {~
         navigate("/");
     };
     
