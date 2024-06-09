@@ -37,7 +37,7 @@ function App() {
         </main>
         <Footer />    
       </div>
-      <Toaster></Toaster>
+      <Toaster />
     </div>
   ) : null
 }
