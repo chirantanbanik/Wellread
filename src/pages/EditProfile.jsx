@@ -4,12 +4,11 @@ import { useSelector } from 'react-redux';
 import appwriteService from '../appwrite/config';
 import { useNavigate } from 'react-router-dom';
 import { Button, Input, RTE } from '../components';
-
+//edit profile feature added
 export default function EditProfile() {
     const { register, handleSubmit, setValue, control } = useForm();
     const navigate = useNavigate();
     const userData = useSelector((state) => state.auth.userData);
-
     const onSubmit = async (data) => {
         try {
             const file = data.profilePic[0]; // Get the file object
