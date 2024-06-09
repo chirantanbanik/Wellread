@@ -40,7 +40,7 @@ function Login() {
     const onClose = () => {
         navigate("/");
     };
-
+    
     return (
         <div
             className='flex items-center justify-center w-full'>
