@@ -7,9 +7,11 @@ import { Outlet } from 'react-router-dom'
 import { Footer, Header } from "./components";
 import { Toaster } from "react-hot-toast";
 
+
 function App() {
   const [loading, setLoading] = useState(true)
   const dispatch = useDispatch()
+
 
   useEffect(() => {
     authService.getCurrentUser()
@@ -22,6 +24,7 @@ function App() {
     })
     .finally(() => setLoading(false))
   }, [])
+
 
   return !loading ? (
     <div className='min-h-screen flex flex-wrap content-between bg-blue-400'>
@@ -38,5 +41,6 @@ function App() {
     </div>
   ) : null
 }
+
 
 export default App
