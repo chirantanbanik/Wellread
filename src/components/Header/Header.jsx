@@ -36,7 +36,7 @@ function Header() {
   }, []);
 
   return (
-    <header className='py-2 w-full rounded-xl items-center justify-center bg-blue-600 shadow'>
+    <header className='py-2 w-full rounded-xl items-center justify-center bg-blue-600 shadow sticky top-0 z-1'>
       <Container>
         <nav className='flex justify-between items-center'>
           <div className='mr-4'>
