@@ -15,12 +15,13 @@ import UserProfile from './pages/UserProfile.jsx'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import EditProfile from './pages/EditProfile.jsx'
 import Landing from './pages/Landing.jsx';
+import Preloader from './pages/Preloader.jsx'
 
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <Preloader />,
     children: [
         {
             path: "/",
