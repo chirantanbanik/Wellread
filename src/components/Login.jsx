@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState , useEffect} from 'react'
 import { Link, useNavigate } from "react-router-dom"
 import { login as authLogin } from "../store/authSlice"
 import { Button, Input, Logo } from "./index"
@@ -16,21 +16,40 @@ function Login() {
     const { register, handleSubmit } = useForm()
     const [error, setError] = useState("");
     const [showPassword, setShowPassword] = useState(false);
+    const [rememberMe, setRememberMe] = useState(false);
 
 
-    const login = async (data) => {
-        try {
-            const session = await authService.login(data)
-            if (session) {
-                const userData = await authService.
-                    getCurrentUser()
-                if (userData) dispatch(authLogin(userData))
-                navigate("/")
-            }
-        } catch (error) {
-            toast.error(error.message);
-            setError(error.message);
+    useEffect(() => {
+        const storedUser = localStorage.getItem('user');
+        if (storedUser) {
+            const userData = JSON.parse(storedUser);
+            dispatch(authLogin(userData));
+            navigate("/");
         }
+    }, [dispatch, navigate]);
+
+    const login = (data) => {
+        authService.login(data)
+            .then(session => {
+                if (session) {
+                    return authService.getCurrentUser();
+                }
+            })
+            .then(userData => {
+                if (userData) {
+                    dispatch(authLogin(userData));
+                    if (rememberMe) {
+                        localStorage.setItem('user', JSON.stringify(userData));
+                    } else {
+                        localStorage.removeItem('user');
+                    }
+                    navigate("/");
+                }
+            })
+            .catch(error => {
+                toast.error(error.message);
+                setError(error.message);
+            });
     }
 
 
@@ -39,6 +58,9 @@ function Login() {
     };
     const onClose = () => {~
         navigate("/");
+    };
+    const handleRememberMeChange = (e) => {
+        setRememberMe(e.target.checked);
     };
     
     return (
@@ -97,6 +119,18 @@ function Login() {
                                 </span>
                             </div>
                         </div>
+                         
+                        <div className='flex items-center'>
+                        <input
+                            type="checkbox"
+                            id="rememberMe"
+                            className="mr-2"
+                            checked={rememberMe}
+                            onChange={handleRememberMeChange}
+                        />
+                        <label htmlFor="rememberMe" className='text-left font-medium ml-1'>Remember Me</label>
+                    </div>
+
                         <Button
                             type="submit"
                             className="w-full"
