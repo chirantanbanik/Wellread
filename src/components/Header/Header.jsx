@@ -18,12 +18,12 @@ function Header() {
     },
     {
       name: "Features",
-      slug: "/login",
+      slug: "/features",
       active: !authStatus,
   },
   {
       name: "About us",
-      slug: "/signup",
+      slug: "/about",
       active: !authStatus,
   },
   {

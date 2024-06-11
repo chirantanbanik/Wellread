@@ -13,6 +13,8 @@ import AllPosts from "./pages/AllPosts.jsx"
 import Home from "./pages/Home.jsx"
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import Landing from './pages/Landing.jsx';
+import About from './pages/About.jsx'
+import Features from './pages/Features.jsx'
 
 
 
@@ -25,6 +27,14 @@ const router = createBrowserRouter([
         {
             path: "/",
             element: <Landing />,
+        },
+        {
+            path: "/about",
+            element: <About/>
+        },
+        {
+            path: "/features",
+            element: <Features />,
         },
         {
             path: "/login",
