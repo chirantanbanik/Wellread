@@ -98,7 +98,7 @@ const Landing = () => {
         transition={featuresAnimation.transition}
       >
         <motion.div
-          className="container mx-auto px-6"
+          className="container mx-auto md:px-6 px-2"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
@@ -116,13 +116,13 @@ const Landing = () => {
               className="feature p-6 bg-white rounded-lg shadow-lg"
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: .8 }}
-              whileHover={{ 
-                scale: 1.07, 
-                boxShadow: '0px 20px 40px rgba(0, 0, 0, 0.15)',
-                backgroundColor: '#f0f4f8',
-                color: '#1a202c',
-                cursor: 'default'
+              transition={{ duration: 0.8 }}
+              whileHover={{
+                scale: 1.07,
+                boxShadow: "0px 20px 40px rgba(0, 0, 0, 0.15)",
+                backgroundColor: "#f0f4f8",
+                color: "#1a202c",
+                cursor: "default",
               }}
             >
               <h3 className="text-2xl font-bold mb-4 text-blue-900">
@@ -141,12 +141,12 @@ const Landing = () => {
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              whileHover={{ 
-                scale: 1.07, 
-                boxShadow: '0px 20px 40px rgba(0, 0, 0, 0.15)',
-                backgroundColor: '#f0f4f8',
-                color: '#1a202c',
-                cursor: 'default'
+              whileHover={{
+                scale: 1.07,
+                boxShadow: "0px 20px 40px rgba(0, 0, 0, 0.15)",
+                backgroundColor: "#f0f4f8",
+                color: "#1a202c",
+                cursor: "default",
               }}
             >
               <h3 className="text-2xl font-bold mb-4 text-blue-900">
@@ -165,12 +165,12 @@ const Landing = () => {
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              whileHover={{ 
-                scale: 1.07, 
-                boxShadow: '0px 20px 40px rgba(0, 0, 0, 0.15)',
-                backgroundColor: '#f0f4f8',
-                color: '#1a202c',
-                cursor: 'default'
+              whileHover={{
+                scale: 1.07,
+                boxShadow: "0px 20px 40px rgba(0, 0, 0, 0.15)",
+                backgroundColor: "#f0f4f8",
+                color: "#1a202c",
+                cursor: "default",
               }}
             >
               <h3 className="text-2xl font-bold mb-4 text-blue-900">
