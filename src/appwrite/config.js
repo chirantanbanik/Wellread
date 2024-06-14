@@ -239,15 +239,19 @@ export class Service{
     }
     async resetPasswordRequest(email) {
         try {
+            const origin = window.location.origin;
+            const resetPasswordUrl = `${origin}/reset-password`;
+            
             return await this.account.createRecovery(
                 email,
-                'http://localhost:5173/reset-password' // Replace with your reset password URL
+                resetPasswordUrl
             );
         } catch (error) {
             console.error("Appwrite service :: resetPasswordRequest :: error", error);
             throw error;
         }
     }
+    
 
     async updatePassword(userId, secret, password) {
         try {
