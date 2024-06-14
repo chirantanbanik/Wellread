@@ -17,12 +17,14 @@ import EditProfile from './pages/EditProfile.jsx'
 import Landing from './pages/Landing.jsx';
 import ForgotPassword from './components/ForgotPassword.jsx'
 import ResetPassword from './components/ResetPassword.jsx'
+import Preloader from './pages/Preloader.jsx'
+
 
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <Preloader />,
     children: [
         {
             path: "/",

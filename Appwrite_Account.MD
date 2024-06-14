@@ -1,14 +1,3 @@
-## Wellread
-A blogging application for creative people to express their feelings, thoughts and ideas.
-
-### Tech Stack
-**Client**: Reactjs, Redux-toolkit, Tailwind css 
-
-**Server:** Appwrite
-
-**Deployment:** Vercel
-
-
 ### Appwrite Setup
 Create an Account by signing up.
 ![Signup](https://github.com/chirantanbanik/wellread/assets/71392444/01540c55-5211-4762-94b3-524390ae2007)
@@ -89,12 +78,3 @@ npm install
 ```bash
 npm run dev
 ```
-
-## Project Author and Maintainer
-- [@chirantanbanik](https://www.linkedin.com/in/chirantanbanik/)
-
-## Our Contributors
-<a href="https://github.com/chirantanbanik/Wellread/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=chirantanbanik/Wellread" />
-</a>
-
