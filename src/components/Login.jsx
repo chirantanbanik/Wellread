@@ -1,4 +1,4 @@
-import React, { useState , useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from "react-router-dom"
 import { login as authLogin } from "../store/authSlice"
 import { Button, Input, Logo } from "./index"
@@ -9,7 +9,6 @@ import toast from "react-hot-toast";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 
-
 function Login() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -17,7 +16,6 @@ function Login() {
     const [error, setError] = useState("");
     const [showPassword, setShowPassword] = useState(false);
     const [rememberMe, setRememberMe] = useState(false);
-
 
     useEffect(() => {
         const storedUser = localStorage.getItem('user');
@@ -52,20 +50,21 @@ function Login() {
             });
     }
 
-
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
+
     const onClose = () => {
         navigate("/");
     };
+
     const handleRememberMeChange = (e) => {
         setRememberMe(e.target.checked);
     };
-    
+
     return (
         <div className='flex items-center justify-center w-full'>
-            <div className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}>
+            <div className='mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10'>
                 <button onClick={onClose} className="ml-96">
                     <AiOutlineCloseCircle className="text-2xl" />
                 </button>
