@@ -1,41 +1,74 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from "react-router-dom";
-import { login as authLogin } from "../store/authSlice";
-import { Button, Input, Logo } from "./index";
-import { useDispatch } from 'react-redux';
-import authService from "../appwrite/auth";
-import { useForm } from "react-hook-form";
+import React, { useState , useEffect } from 'react'
+import { Link, useNavigate } from "react-router-dom"
+import { login as authLogin } from "../store/authSlice"
+import { Button, Input, Logo } from "./index"
+import { useDispatch } from 'react-redux'
+import authService from "../appwrite/auth"
+import { useForm } from "react-hook-form"
 import toast from "react-hot-toast";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { AiOutlineCloseCircle } from "react-icons/ai";
+
 
 function Login() {
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
-    const { register, handleSubmit } = useForm();
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const { register, handleSubmit } = useForm()
     const [error, setError] = useState("");
     const [showPassword, setShowPassword] = useState(false);
+    const [rememberMe, setRememberMe] = useState(false);
 
-    const login = async (data) => {
-        try {
-            const session = await authService.login(data);
-            if (session) {
-                const userData = await authService.getCurrentUser();
-                if (userData) dispatch(authLogin(userData));
-                navigate("/");
-            }
-        } catch (error) {
-            toast.error(error.message);
-            setError(error.message);
+
+    useEffect(() => {
+        const storedUser = localStorage.getItem('user');
+        if (storedUser) {
+            const userData = JSON.parse(storedUser);
+            dispatch(authLogin(userData));
+            navigate("/");
         }
+    }, [dispatch, navigate]);
+
+    const login = (data) => {
+        authService.login(data)
+            .then(session => {
+                if (session) {
+                    return authService.getCurrentUser();
+                }
+            })
+            .then(userData => {
+                if (userData) {
+                    dispatch(authLogin(userData));
+                    if (rememberMe) {
+                        localStorage.setItem('user', JSON.stringify(userData));
+                    } else {
+                        localStorage.removeItem('user');
+                    }
+                    navigate("/");
+                }
+            })
+            .catch(error => {
+                toast.error(error.message);
+                setError(error.message);
+            });
     }
+
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
-
+    const onClose = () => {
+        navigate("/");
+    };
+    const handleRememberMeChange = (e) => {
+        setRememberMe(e.target.checked);
+    };
+    
     return (
         <div className='flex items-center justify-center w-full'>
             <div className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}>
+                <button onClick={onClose} className="ml-96">
+                    <AiOutlineCloseCircle className="text-2xl" />
+                </button>
                 <div className="mb-2 flex justify-center">
                     <span className="inline-block w-full max-w-[100px]">
                         <Logo width="100%" />
@@ -76,10 +109,27 @@ function Login() {
                                 </span>
                             </div>
                         </div>
-                        <Button
-                            type="submit"
-                            className="w-full"
-                        >Login</Button>
+                        <div className='flex items-center justify-between'>
+                            <div className='flex items-center'>
+                                <input
+                                    type="checkbox"
+                                    id="rememberMe"
+                                    className="mr-2"
+                                    checked={rememberMe}
+                                    onChange={handleRememberMeChange}
+                                />
+                                <label htmlFor="rememberMe" className='text-left font-medium ml-1'>Remember Me</label>
+                            </div>
+                            <div>
+                                <Link
+                                    to="/forgot-password"
+                                    className="font-medium text-primary transition-all duration-200 hover:underline"
+                                >
+                                    Forgot Password?
+                                </Link>
+                            </div>
+                        </div>
+                        <Button type="submit" className="w-full">Login</Button>
                         <p className="mt-2 text-center text-base text-black/60">
                             Don&apos;t have any account?&nbsp;
                             <Link
@@ -89,15 +139,6 @@ function Login() {
                                 Sign Up
                             </Link>
                         </p>
-                        <p className="mt-2 text-center text-base text-black/60">
-                            Forgot your password?&nbsp;
-                            <Link
-                                to="/forgot-password"
-                                className="font-medium text-primary transition-all duration-200 hover:underline"
-                            >
-                                Reset Password
-                            </Link>
-                        </p>
                     </div>
                 </form>
             </div>
@@ -105,4 +146,4 @@ function Login() {
     )
 }
 
-export default Login;
+export default Login
