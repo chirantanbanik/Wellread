@@ -4,7 +4,10 @@ const conf = {
     appwriteDatabaseId: String(import.meta.env.VITE_APPWRITE_DATABASE_ID),
     appwriteCollectionId: String(import.meta.env.VITE_APPWRITE_COLLECTION_ID),
     appwriteBucketId: String(import.meta.env.VITE_APPWRITE_BUCKET_ID),
+    appwriteUserId: String(import.meta.env.VITE_APPWRITE_COLLECTION_PROFILES_ID),
     tinymce: String(import.meta.env.TINY_MCE)
+
+
 }
 
 export default conf

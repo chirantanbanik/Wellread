@@ -11,18 +11,24 @@ import EditPost from "./pages/EditPost.jsx"
 import Post from "./pages/Post.jsx"
 import AllPosts from "./pages/AllPosts.jsx"
 import Home from "./pages/Home.jsx"
+import UserProfile from './pages/UserProfile.jsx'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import EditProfile from './pages/EditProfile.jsx'
 import Landing from './pages/Landing.jsx';
+<<<<<<< HEAD
 import About from './pages/About.jsx'
 import Features from './pages/Features.jsx'
 
 
+=======
+import Preloader from './pages/Preloader.jsx'
+>>>>>>> 53de0c4ca826d3a11aa6286a272fea9aa43d30c2
 
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <Preloader />,
     children: [
         {
             path: "/",
@@ -91,6 +97,25 @@ const router = createBrowserRouter([
             path: "/post/:slug",
             element: <Post />,
         },
+
+        {
+            path: "/edit-profile",
+            element: (
+               
+                    <EditProfile />
+            ),
+        },
+        {
+            path: "/profile/:userId",
+            element: (
+               
+                    <UserProfile />
+            ),
+        },
+
+
+
+        
     ],
 },
 ])
