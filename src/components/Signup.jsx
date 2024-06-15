@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { IoCloseCircleOutline } from "react-icons/io5";
 
 
 function Signup() {
@@ -70,11 +71,20 @@ function Signup() {
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
+const onclose=()=>
+    {
+        navigate("/");
+    }
+
 
 
     return (
         <div className="flex items-center justify-center w-full">
             <div className="mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10">
+               <div  onClick={onclose} className='ml-96 cursor-pointer text-2xl'>
+               <IoCloseCircleOutline />
+               </div>
+
                 <div className="mb-2 flex justify-center">
                     <span className="inline-block w-full max-w-[100px]">
                         <Logo width="100%" />
