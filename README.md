@@ -5,28 +5,9 @@
 <center>
 <img  src="https://readme-typing-svg.herokuapp.com?color=45ffaa&size=40&width=900&height=80&lines=Welcome-to-WellRead!"/>
 </center>
-   
-![Application Screenshot](screenshots/screenshot.png)
+<h2>Hi there!👋 Welcome to WellRead Universe 📚</h2>
 
- <div align="center">
- <p>
-
-[![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
-![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)
-![Visitors](https://api.visitorbadge.io/api/visitors?path=yourusername/WellRead_Blogging&countColor=%23263759&style=flat)
-![GitHub forks](https://img.shields.io/github/forks/yourusername/WellRead_Blogging)
-![GitHub Repo stars](https://img.shields.io/github/stars/yourusername/WellRead_Blogging)
-![GitHub last commit](https://img.shields.io/github/last-commit/yourusername/WellRead_Blogging)
-![GitHub repo size](https://img.shields.io/github/repo-size/yourusername/WellRead_Blogging)
-![Github](https://img.shields.io/github/license/yourusername/WellRead_Blogging)
-![GitHub pull requests](https://img.shields.io/github/issues-pr/yourusername/WellRead_Blogging)
-
- </p>
- </div>
-
- <h2>Hi there!👋 Welcome to WellRead Universe 📚</h2>
-
-<p>Hello Bloggers!!👩‍💻<br> I am [Your Name], an enthusiastic creator and developer🚀. Join us in exploring the world of ideas and creativity with our blogging application!</p>
+<p>Hello Developers👩‍💻<br> I am Chirantan Banik, an enthusiastic creator and developer🚀. Join us in exploring the world of ideas and creativity with our blogging application!</p>
 
 <div id="top"></div>
 
@@ -38,8 +19,6 @@
 - [Getting Started💥](#getting-started)
 - [Contributing Guidelines📑](#contributing-guidelines)
 - [Code Of Conduct📑](#code-of-conduct)
-- [Project Admin⚡](#project-admin)
-- [Contributing is Fun🧡](#contributing-is-fun)
 - [License](#license)
 <br>
 
@@ -132,31 +111,6 @@ Show some ❤️&nbsp; by giving <img src="https://imgur.com/o7ncZFp.jpg" height
 </p>
 
 <div align="center">
-
-## Project Admin
-
-<table>
-<tr>
-<td align="center"><a href="https://github.com/yourusername"><img src="https://avatars.githubusercontent.com/u/yourusername" width=130px height=130px /></a></br> <h4 style="color:red;">[Your Name]</h4>
- <a href="https://www.linkedin.com/in/your-linkedin-profile/"><img src="https://img.icons8.com/fluency/2x/linkedin.png" width="32px" height="32px"></a>
-   </td>
-
-</tr>
-</table>
-  
-</div>
-
-## Contributing is Fun🧡
-
-<p align ="center">
-  <img src="https://github.com/yourusername/WellRead_Blogging/assets/contributing.gif" width="700" height= "250" />
-</p>
-
-<a href="https://github.com/yourusername/WellRead_Blogging/graphs/contributors">
-  <img align="center" src="https://contrib.rocks/image?max=100&repo=yourusername/WellRead_Blogging" />
-</a> 
-<br><br>
-Thank you to all the amazing contributors who have made this project possible!💖
 
 ## License 
 <img src = "https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge">
