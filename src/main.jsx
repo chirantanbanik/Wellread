@@ -15,9 +15,12 @@ import UserProfile from './pages/UserProfile.jsx'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import EditProfile from './pages/EditProfile.jsx'
 import Landing from './pages/Landing.jsx';
+import ForgotPassword from './components/ForgotPassword.jsx'
+import ResetPassword from './components/ResetPassword.jsx'
 import Preloader from './pages/Preloader.jsx'
 import About from './pages/About.jsx'
 import Features from './pages/Features.jsx'
+
 
 
 const router = createBrowserRouter([
@@ -28,6 +31,7 @@ const router = createBrowserRouter([
         {
             path: "/",
             element: <Landing />,
+            
         },
         {
             path: "/about",
@@ -105,6 +109,20 @@ const router = createBrowserRouter([
             element: (
                
                     <UserProfile />
+            ),
+        },
+        {
+            path: "/forgot-password",
+            element: (
+               
+                    <ForgotPassword/>
+            ),
+        },
+        {
+            path: "/reset-password",
+            element: (
+               
+                    <ResetPassword/>
             ),
         },
 
