@@ -2,13 +2,26 @@ name: Auto Comment on PR Merge
 
 on:
   pull_request_target:
-    types: [closed]
+    types: [opened, closed]
 
 permissions:
   issues: write
   pull-requests: write
   
 jobs:
+  assign-reviewer:
+    if: ${{ github.event.action == 'opened' }}
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Assign Reviewer
+      uses: kentaro-m/auto-assign-action@v2.2.0
+      with:
+        reviewers: 'chirantanbanik'
+        review-type: 'request'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
   comment:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
