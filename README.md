@@ -1,4 +1,4 @@
-# <p align="center">✨ Wellread, where Inspiration Thrives. ✨</p>
+# <p align="center">✨The Blogging Application - WELLREAD ✨</p>
 
 <p align="center">
    
