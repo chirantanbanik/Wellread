@@ -5,11 +5,17 @@
 <center>
 <img  src="https://readme-typing-svg.herokuapp.com?color=45ffaa&size=40&width=900&height=80&lines=Welcome-to-WellRead!"/>
 </center>
-<h2>Hi there!👋 Welcome to WellRead Universe 📚</h2>
+<p>Hello Developers👩‍💻 I am Chirantan Banik, an enthusiastic creator and developer🚀. Join us in exploring the world of ideas and creativity with our blogging application!</p>
+<br>
 
-<p>Hello Developers👩‍💻<br> I am Chirantan Banik, an enthusiastic creator and developer🚀. Join us in exploring the world of ideas and creativity with our blogging application!</p>
 
 <div id="top"></div>
+
+![GG Extensions](https://github.com/Sulagna-Dutta-Roy/GGExtensions/assets/72568715/f6bab92e-c4c3-40d1-ae8f-01ed9ab84be6)
+
+## Accepted for GirlScript Summer of Code 2024
+<br>
+
 
 <h2>Table of Contents🧾</h2>
 
@@ -24,9 +30,9 @@
 
 <h2>Overview📌</h2>
 <p>This repository hosts our WellRead blogging application, designed for creative minds to express their thoughts, feelings, and ideas. Whether you're a seasoned writer or just starting out, our platform provides the tools you need to craft compelling blog posts and share them with the world. Join us in building a vibrant community of writers!</p>
-
+<br>
 <h2>Live Application -- [WellRead Blogging](https://wellread-one.vercel.app/)</h2>
-
+<br>
 <h2>Features</h2>
 
 - **User Authentication:** Secure login and registration system.
