@@ -11,35 +11,29 @@ function Header() {
   const menuRef = useRef();
 
   const navItems = [
-    {
-      name: 'Home',
-      slug: "/",
-      active: true
-    },
-    {
-      name: "Features",
-      slug: "/features",
-      active: !authStatus,
-  },
-  {
-      name: "About us",
-      slug: "/about",
-      active: !authStatus,
-  },
-  {
-      name: "All Posts",
-      slug: "/all-posts",
-      active: authStatus,
-  },
-  {
-      name: "Add Post",
-      slug: "/add-post",
-      active: authStatus,
-  }
-  ]
+    { name: 'Home', slug: "/", active: true },
+    { name: "Features", slug: "/login", active: !authStatus },
+    { name: "About us", slug: "/signup", active: !authStatus },
+    { name: "All Posts", slug: "/all-posts", active: authStatus },
+    { name: "Add Post", slug: "/add-post", active: authStatus },
+  ];
 
+  const handleMenuToggle = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
+  const handleClickOutside = (event) => {
+    if (menuRef.current && !menuRef.current.contains(event.target)) {
+      setIsMenuOpen(false);
+    }
+  };
 
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   return (
     <header className='py-2 w-full rounded-xl items-center justify-center bg-blue-600 shadow'>
@@ -51,7 +45,7 @@ function Header() {
             </Link>
           </div>
           <div className='flex md:hidden'>
-            <button  className='text-white'>
+            <button onClick={handleMenuToggle} className='text-white'>
               {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
             </button>
           </div>
