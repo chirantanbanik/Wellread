@@ -3,11 +3,13 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import About from "./About";
 import Features from "./Features";
+import { useSelector } from "react-redux";
 
 
 const Landing = () => {
   const aboutRef = useRef(null);
   const navigate = useNavigate();
+  const authStatus = useSelector((state) => state.auth.status);
 
   const handleScrollToDiscover = () => {
     if (aboutRef.current) {
@@ -131,13 +133,22 @@ const Landing = () => {
             thrives. Together, we can inspire, support, and create a brighter
             future through the power of words and ideas.
           </motion.p>
-          <motion.button
+          { !authStatus && <motion.button
             className="mt-8 px-6 py-3 bg-blue-900 text-white font-semibold rounded-full"
             whileHover={{ scale: 1.1 }}
             onClick={() => navigate("/signup")}
           >
             Sign Up
-          </motion.button>
+          </motion.button>}
+
+          { authStatus && <motion.button
+            className="mt-8 px-6 py-3 bg-blue-900 text-white font-semibold rounded-full"
+            whileHover={{ scale: 1.1 }}
+            onClick={() => navigate("/add-post")}
+          >
+            Add Post
+          </motion.button>}
+
         </motion.div>
       </motion.section>
       </div>
