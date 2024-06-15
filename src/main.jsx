@@ -15,14 +15,9 @@ import UserProfile from './pages/UserProfile.jsx'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import EditProfile from './pages/EditProfile.jsx'
 import Landing from './pages/Landing.jsx';
-<<<<<<< HEAD
+import Preloader from './pages/Preloader.jsx'
 import About from './pages/About.jsx'
 import Features from './pages/Features.jsx'
-
-
-=======
-import Preloader from './pages/Preloader.jsx'
->>>>>>> 53de0c4ca826d3a11aa6286a272fea9aa43d30c2
 
 
 const router = createBrowserRouter([

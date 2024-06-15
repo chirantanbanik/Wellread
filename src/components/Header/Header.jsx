@@ -18,12 +18,12 @@ function Header() {
     },
     {
       name: "Features",
-      slug: "/login",
+      slug: "/features",
       active: !authStatus,
   },
   {
       name: "About us",
-      slug: "/signup",
+      slug: "/about",
       active: !authStatus,
   },
   {
@@ -51,7 +51,7 @@ function Header() {
             </Link>
           </div>
           <div className='flex md:hidden'>
-            <button onClick={handleMenuToggle} className='text-white'>
+            <button  className='text-white'>
               {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
             </button>
           </div>

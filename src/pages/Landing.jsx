@@ -1,15 +1,9 @@
-<<<<<<< HEAD
-import React, {useRef} from 'react';
-import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom'
-import About from './About';
-import Features from './Features';
-
-=======
 import React, { useRef } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
->>>>>>> 53de0c4ca826d3a11aa6286a272fea9aa43d30c2
+import About from "./About";
+import Features from "./Features";
+
 
 const Landing = () => {
   const aboutRef = useRef(null);
@@ -40,7 +34,7 @@ const Landing = () => {
   };
 
   return (
-    <div className="flex-1 flex flex-col justify-center items-center text-center bg-sky-blue">
+    <><div className="flex-1 flex flex-col justify-center items-center text-center bg-sky-blue">
       <motion.div
         className="landing-page w-full py-20"
         initial={{ opacity: 0, y: 50 }}
@@ -54,15 +48,6 @@ const Landing = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 1.5 }}
           >
-<<<<<<< HEAD
-            <About/>
-          </motion.section>
-          <motion.section
-            className='w-full py-10 bg-blue-100 text-gray-800'
-            initial={featuresAnimation.initial}
-            animate={featuresAnimation.animate}
-            transition={featuresAnimation.transition}
-=======
             Welcome to <span className="text-blue-900">WellRead!</span>
           </motion.h1>
           <motion.p
@@ -70,7 +55,6 @@ const Landing = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 2 }}
->>>>>>> 53de0c4ca826d3a11aa6286a272fea9aa43d30c2
           >
             Empowering Creativity, One Thought at a Time: Wellread, where
             Inspiration Thrives.
@@ -94,21 +78,7 @@ const Landing = () => {
         animate={aboutAnimation.animate}
         transition={aboutAnimation.transition}
       >
-        <div className="container mx-auto px-6 md:px-10 lg:px-20">
-          <h2 className="text-4xl font-bold mb-6 text-center">
-            About WellRead
-          </h2>
-          <p className="sm:text-md text-lg mb-6 text-black text-center font-bold">
-            Welcome to WellRead, a vibrant platform dedicated to fostering
-            creativity and inspiration. At WellRead, we believe in the power of
-            words and ideas to change the world. At WellRead, our mission is to
-            empower individuals to express their creativity and inspire others.
-            We aim to create a supportive and dynamic environment where every
-            voice is heard, and every idea can flourish. Whether you're a
-            writer, artist, or thinker, you’ll find a community that values your
-            unique perspective.
-          </p>
-        </div>
+        <About />
       </motion.section>
       <motion.section
         className="w-full py-10 bg-blue-100 text-gray-800"
@@ -122,102 +92,62 @@ const Landing = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
         >
-          <motion.h2
-            className="text-4xl font-bold mb-12 mt-4 text-blue-900"
+          <Features />
+          <motion.div
+            className="feature p-6 bg-white rounded-lg shadow-lg"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
+            transition={{ duration: 0.8 }}
+            whileHover={{
+              scale: 1.07,
+              boxShadow: '0px 20px 40px rgba(0, 0, 0, 0.15)',
+              backgroundColor: '#f0f4f8',
+              color: '#1a202c',
+              cursor: 'default'
+            }}
           >
-            Features
-          </motion.h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <motion.div
-              className="feature p-6 bg-white rounded-lg shadow-lg"
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: .8 }}
-              whileHover={{ 
-                scale: 1.07, 
-                boxShadow: '0px 20px 40px rgba(0, 0, 0, 0.15)',
-                backgroundColor: '#f0f4f8',
-                color: '#1a202c',
-                cursor: 'default'
-              }}
-            >
-<<<<<<< HEAD
-              <Features/>
-              
-=======
-              <h3 className="text-2xl font-bold mb-4 text-blue-900">
-                Share Your Journey
-              </h3>
-              <p className="text-lg font-semibold">
-                Every creative journey is unique, and at WellRead, we celebrate
-                that uniqueness. Share your stories, experiences, and insights
-                with our community. Whether you’re just starting out or you’re
-                an experienced creator, your journey can inspire others and
-                spark new ideas.
-              </p>
->>>>>>> 53de0c4ca826d3a11aa6286a272fea9aa43d30c2
-            </motion.div>
-            <motion.div
-              className="feature p-6 bg-white rounded-lg shadow-lg"
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              whileHover={{ 
-                scale: 1.07, 
-                boxShadow: '0px 20px 40px rgba(0, 0, 0, 0.15)',
-                backgroundColor: '#f0f4f8',
-                color: '#1a202c',
-                cursor: 'default'
-              }}
-            >
-              <h3 className="text-2xl font-bold mb-4 text-blue-900">
-                Explore New Ideas
-              </h3>
-              <p className="text-lg font-semibold">
-                WellRead is a hub of creativity, where you can explore a diverse
-                range of ideas and perspectives. From thought-provoking articles
-                and essays to imaginative fiction and poetry, there’s always
-                something new to discover. Dive into our library of
-                user-generated content and let your imagination roam free.
-              </p>
-            </motion.div>
-            <motion.div
-              className="feature p-6 bg-white rounded-lg shadow-lg"
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              whileHover={{ 
-                scale: 1.07, 
-                boxShadow: '0px 20px 40px rgba(0, 0, 0, 0.15)',
-                backgroundColor: '#f0f4f8',
-                color: '#1a202c',
-                cursor: 'default'
-              }}
-            >
-              <h3 className="text-2xl font-bold mb-4 text-blue-900">
-                Resources and Tools
-              </h3>
-              <p className="text-lg font-semibold">
-                We provide a variety of resources and tools to help you enhance
-                your creativity. Whether you need writing prompts, artistic
-                challenges, or tips on improving your craft, WellRead has you
-                covered. Our goal is to equip you with everything you need to
-                succeed in your creative endeavors.
-              </p>
-            </motion.div>
-          </div>
-        </motion.div>
-      </motion.section>
-
-      <motion.section
-        className="w-full py-20 bg-white text-gray-800"
-        initial={joinAnimation.initial}
-        animate={joinAnimation.animate}
-        transition={joinAnimation.transition}
-      >
+            <h3 className="text-2xl font-bold mb-4 text-blue-900">
+              Explore New Ideas
+            </h3>
+            <p className="text-lg font-semibold">
+              WellRead is a hub of creativity, where you can explore a diverse
+              range of ideas and perspectives. From thought-provoking articles
+              and essays to imaginative fiction and poetry, there’s always
+              something new to discover. Dive into our library of
+              user-generated content and let your imagination roam free.
+            </p>
+          </motion.div>
+          <motion.div
+            className="feature p-6 bg-white rounded-lg shadow-lg"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            whileHover={{
+              scale: 1.07,
+              boxShadow: '0px 20px 40px rgba(0, 0, 0, 0.15)',
+              backgroundColor: '#f0f4f8',
+              color: '#1a202c',
+              cursor: 'default'
+            }}
+          >
+            <h3 className="text-2xl font-bold mb-4 text-blue-900">
+              Resources and Tools
+            </h3>
+            <p className="text-lg font-semibold">
+              We provide a variety of resources and tools to help you enhance
+              your creativity. Whether you need writing prompts, artistic
+              challenges, or tips on improving your craft, WellRead has you
+              covered. Our goal is to equip you with everything you need to
+              succeed in your creative endeavors.
+            </p>
+          </motion.div>
+      </motion.div>
+    </motion.section><motion.section
+      className="w-full py-20 bg-white text-gray-800"
+      initial={joinAnimation.initial}
+      animate={joinAnimation.animate}
+      transition={joinAnimation.transition}
+    >
         <motion.div
           className="container mx-auto px-6"
           initial={{ opacity: 0, y: 50 }}
@@ -256,7 +186,8 @@ const Landing = () => {
           </motion.button>
         </motion.div>
       </motion.section>
-    </div>
+      </div>
+      </>
   );
 };
 
