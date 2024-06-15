@@ -60,7 +60,7 @@
 
 <h3>Local Installation Guide</h3>
 
-[Installation Video](https://your-installation-video-link.com)
+
 
 ## How to Contribute?
 
@@ -105,20 +105,22 @@ git push origin YourBranchName
 
 <h2>Contributing Guidelines📑</h2>
 
-To learn about our development process, how to propose bug fixes and improvements, please read our [Contributing Guidelines](https://github.com/yourusername/WellRead_Blogging/blob/main/CONTRIBUTING.md).
+To learn about our development process, how to propose bug fixes and improvements, please read our [Contributing Guidelines](https://github.com/chirantanbanik/Wellread/blob/docs/CONTRIBUTING.MD).
 
 <h2>Code Of Conduct📑</h2>
 
-This project and everyone participating in it are governed by the [Code of Conduct](https://github.com/yourusername/WellRead_Blogging/blob/main/CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code.
+This project and everyone participating in it are governed by the [Code of Conduct](https://github.com/chirantanbanik/Wellread/blob/docs/CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code.
 
 </br>
 <p align = "center">
-Show some ❤️&nbsp; by giving <img src="https://imgur.com/o7ncZFp.jpg" height=25px width=25px> to this repository.
+Show some ❤️&nbsp; by giving a star ⭐ to this repository.
 </p>
 
 <div align="center">
 
 ## License 
-<img src = "https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge">
-
+For more details, see the [LICENSE](https://github.com/chirantanbanik/Wellread/blob/docs/LICENSE) file.
 <p align="right"><a href="#top"><img src="https://img.shields.io/badge/Back%20To%20Top-Blue?style=plastic" alt="Back To Top"></a></p>
+
+---
+
