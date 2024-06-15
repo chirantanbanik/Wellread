@@ -23,7 +23,7 @@ function PostCard({ $id, title, featuredImage, author, userId }) {
     }, [userId]);
 
     return (
-        <div className='w-full bg-gray-100 rounded-xl p-4'>
+        <div className='w-full bg-gray-100 rounded-xl p-4 h-96'>
             <div className='w-full justify-center mb-4'>
                 <div className='flex items-center mb-2'>
                     <Link to={`/profile/${userId}`}>
