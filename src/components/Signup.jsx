@@ -2,13 +2,12 @@ import React, { useState } from 'react';
 import authService from "../appwrite/auth";
 import { Link, useNavigate } from "react-router-dom";
 import { login } from "../store/authSlice";
-import { Button, Input, Logo } from "./index.js";
+import { Button, Input, Logo } from "./index";
 import { useDispatch } from 'react-redux';
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { IoCloseCircleOutline } from "react-icons/io5";
-
 
 function Signup() {
     const navigate = useNavigate();
@@ -17,7 +16,6 @@ function Signup() {
     const dispatch = useDispatch();
     const { register, handleSubmit } = useForm();
     const [showPassword, setShowPassword] = useState(false);
-
 
     const checkEmail = async (email) => {
         try {
@@ -31,7 +29,6 @@ function Signup() {
         }
     };
 
-
     const create = async (data) => {
         setLoading(true);
         const isEmailValid = await checkEmail(data.email);
@@ -40,7 +37,6 @@ function Signup() {
             setLoading(false);
             return;
         }
-
 
         try {
             const userData = await authService.createAccount(data);
@@ -67,25 +63,21 @@ function Signup() {
         setLoading(false);
     };
 
-
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
-const onclose=()=>
-    {
+
+    const onClose = () => {
         navigate("/");
     }
 
-
-
     return (
-        <div className="flex items-center justify-center w-full">
-            <div className="mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10">
-               <div  onClick={onclose} className='ml-96 cursor-pointer text-2xl'>
-               <IoCloseCircleOutline />
-               </div>
-
-                <div className="mb-2 flex justify-center">
+        <div className='flex items-center justify-center w-full min-h-screen p-4'>
+            <div className='relative w-full max-w-lg bg-gray-100 rounded-xl p-6 sm:p-10 border border-black/10'>
+                <button onClick={onClose} className="absolute top-4 right-4">
+                    <IoCloseCircleOutline className="text-2xl" />
+                </button>
+                <div className="mb-6 flex justify-center">
                     <span className="inline-block w-full max-w-[100px]">
                         <Logo width="100%" />
                     </span>
@@ -94,46 +86,48 @@ const onclose=()=>
                 <form onSubmit={handleSubmit(create)} className='mt-8'>
                     <div className='space-y-5'>
                         <div className='space-y-2'>
-                        <div className='text-left font-medium ml-1'>Full Name: </div>
-                        <Input
-                            placeholder="Enter your Full Name"
-                            {...register("name", {
-                                required: true
-                            })}
-                        />
+                            <label className='block text-left font-medium ml-1'>First Name:</label>
+                            <Input
+                                placeholder="Enter your Full Name"
+                                {...register("name", {
+                                    required: true
+                                })}
+                                className="w-full"
+                            />
                         </div>
                         <div className='space-y-2'>
-                        <div className='text-left font-medium ml-1'>Email: </div>
-                        <Input
-                            placeholder="Enter your Email"
-                            type="email"
-                            {...register("email", {
-                                required: true,
-                                validate: {
-                                    matchPattern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
-                                        "Email address must be a valid address",
-                                }
-                            })}
-                        />
+                            <label className='block text-left font-medium ml-1'>Email:</label>
+                            <Input
+                                placeholder="Enter your Email"
+                                type="email"
+                                {...register("email", {
+                                    required: true,
+                                    validate: {
+                                        matchPattern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
+                                            "Email address must be a valid address",
+                                    }
+                                })}
+                                className="w-full"
+                            />
                         </div>
                         <div className='space-y-2'>
-                        <div className='text-left font-medium ml-1'>Password: </div>
-                        <div className="relative">
-                    <Input
-                      type={showPassword ? 'text' : 'password'}
-                      placeholder="Enter your password"
-                      {...register("password", {
-                        required: true,
-                      })}
-                     
-                    />
-                    <span
-                     onClick={togglePasswordVisibility}
-                     className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer"
-                    >
-                    {showPassword ? <FaEye /> : <FaEyeSlash />}
-                    </span>
-                    </div>
+                            <label className='block text-left font-medium ml-1'>Password:</label>
+                            <div className="relative">
+                                <Input
+                                    type={showPassword ? 'text' : 'password'}
+                                    placeholder="Enter your password"
+                                    {...register("password", {
+                                        required: true,
+                                    })}
+                                    className="w-full"
+                                />
+                                <span
+                                    onClick={togglePasswordVisibility}
+                                    className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer"
+                                >
+                                    {showPassword ? <FaEye /> : <FaEyeSlash />}
+                                </span>
+                            </div>
                         </div>
                         <Button
                             type="submit"
@@ -143,11 +137,13 @@ const onclose=()=>
                             {loading ? 'Creating Account...' : 'Create Account'}
                         </Button>
                         <p className="mt-2 text-center text-base text-black/60">
-                             Already have an account?&nbsp;
-                          <Link
-                            to="/login"
-                            className="font-medium text-primary transition-all duration-200 hover:underline"
-                           > Login </Link>
+                            Already have an account?&nbsp;
+                            <Link
+                                to="/login"
+                                className="font-medium text-primary transition-all duration-200 hover:underline"
+                            > 
+                                Login 
+                            </Link>
                         </p>
                     </div>
                 </form>
@@ -155,6 +151,5 @@ const onclose=()=>
         </div>
     );
 }
-
 
 export default Signup;
