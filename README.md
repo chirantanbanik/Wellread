@@ -1,4 +1,4 @@
-# <p align="center">✨The Blogging Application - WELLREAD ✨</p>
+<p align="center">✨The Blogging Application - WELLREAD ✨</p>
 
 <p align="center">
    
@@ -48,11 +48,11 @@
 
 <p>
   <a href="https://developer.mozilla.org/en-US/docs/Web/HTML"> <img src="https://img.icons8.com/color/70/000000/html-5--v1.png" alt="HTML" /></a>
-  <a href="https://developer.mozilla.org/en-US/docs/Web/CSS"> <img src="https://img.icons8.com/color/70/000000/css3.png" alt="CSS" /></a>
+  <a href="https://tailwindcss.com/"> <img src="https://img.icons8.com/?size=70&id=4PiNHtUJVbLs&format=png&color=000000" alt="Tailwind CSS" /></a>
    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"> <img src="https://img.icons8.com/?size=70&id=PXTY4q2Sq2lG&format=png&color=000000" alt="JavaScript" /></a>
    <a href="https://reactjs.org/"> <img src="https://img.icons8.com/color/70/000000/react-native.png" alt="React" /></a>
-   <a href="https://nodejs.org/en/"> <img src="https://img.icons8.com/color/70/000000/nodejs.png" alt="Node.js" /></a>
-   <a href="https://www.mongodb.com/"> <img src="https://img.icons8.com/color/70/000000/mongodb.png" alt="MongoDB" /></a>
+   <a href="https://appwrite.io/"> <img src="https://img.icons8.com/?size=70&id=114118&format=png&color=F25081" alt="Appwrite" /></a>
+   <a href="https://vercel.com/"> <img src="https://img.icons8.com/?size=70&id=98464&format=png&color=000000" alt="Vercel" /></a>
 </p>
 <p align="right"><a href="#top"><img src="https://img.shields.io/badge/Back%20To%20Top-Blue?style=plastic" alt="Back To Top"></a></p>
 
