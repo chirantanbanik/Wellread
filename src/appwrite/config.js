@@ -237,6 +237,37 @@ export class Service{
             throw error;
         }
     }
+    async resetPasswordRequest(email) {
+        try {
+            const origin = window.location.origin;
+            const resetPasswordUrl = `${origin}/reset-password`;
+            
+            return await this.account.createRecovery(
+                email,
+                resetPasswordUrl
+            );
+        } catch (error) {
+            console.error("Appwrite service :: resetPasswordRequest :: error", error);
+            throw error;
+        }
+    }
+    
+
+    async updatePassword(userId, secret, password) {
+        try {
+            return await this.account.updateRecovery(
+                userId,
+                secret,
+                password,
+                password
+            );
+        } catch (error) {
+            console.error("Appwrite service :: updatePassword :: error", error);
+            throw error;
+        }
+    }
+
+
 
 
 
