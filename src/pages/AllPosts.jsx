@@ -1,30 +1,50 @@
-import React, {useState, useEffect} from 'react'
-import appwriteService from "../appwrite/config" 
-import {Container, PostCard} from "../components"
- import { useSelector } from 'react-redux'
+import React, { useState, useEffect } from 'react';
+import appwriteService from "../appwrite/config";
+import { Container, PostCard } from "../components";
+
 function AllPosts() {
-    const [posts, setPosts] = useState([])
-    useEffect(() => {}, [])
+  const [posts, setPosts] = useState<any[]>([]);
+  const [searchTerm, setSearchTerm] = useState<string>("");
+
+  useEffect(() => {
     appwriteService.getPosts([]).then((posts) => {
-      if(posts){
-        setPosts(posts.documents)
+      if (posts) {
+        setPosts(posts.documents);
       }
-    })
- 
-    
+    });
+  }, []);
+
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value.toLowerCase());
+  };
+
+  const filteredPosts = posts.filter(post =>
+    post.title.toLowerCase().includes(searchTerm) ||
+    post.content.toLowerCase().includes(searchTerm)
+  );
+
   return (
     <div className='w-full py-8'>
       <Container>
+        <div className='flex justify-center mb-4'>
+          <input
+            type="text"
+            placeholder="Search posts"
+            value={searchTerm}
+            onChange={handleSearch}
+            className="input input-bordered input-success w-96"
+          />
+        </div>
         <div className='flex flex-wrap'>
-          {posts.map((post) => (
+          {filteredPosts.map((post) => (
             <div key={post.$id} className='p-2 w-1/4'>
-              <PostCard {...post}/>
+              <PostCard {...post} />
             </div>
           ))}
         </div>
       </Container>
     </div>
-  )
+  );
 }
 
-export default AllPosts
+export default AllPosts;
