@@ -3,7 +3,7 @@ import appwriteService from "../appwrite/config";
 import { Container, PostCard } from "../components";
 
 function AllPosts() {
-  const [posts, setPosts] = useState<any[]>([]);
+  const [posts, setPosts] = useState([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
 
   useEffect(() => {
@@ -14,7 +14,7 @@ function AllPosts() {
     });
   }, []);
 
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSearch = (e) => {
     setSearchTerm(e.target.value.toLowerCase());
   };
 
