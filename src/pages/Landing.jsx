@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import Typewriter from "typewriter-effect";
 
 const Landing = () => {
   const aboutRef = useRef(null);
@@ -40,12 +41,25 @@ const Landing = () => {
       >
         <section className="w-full py-20">
           <motion.h1
-            className="text-5xl lg:text-7xl font-extrabold text-white"
+            className="text-5xl lg:text-7xl flex justify-center flex-wrap gap-4 font-extrabold text-white"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.5 }}
           >
-            Welcome to <span className="text-blue-900">WellRead!</span>
+            Welcome to
+            <span className="text-blue-900 ">
+              <Typewriter
+                onInit={(typewriter) => {
+                  typewriter
+                    .typeString("WellRead!")
+                    .pauseFor(2500)
+                    .start()
+                    .callFunction(() => {
+                      typewriter.stop();
+                    });
+                }}
+              />
+            </span>
           </motion.h1>
           <motion.p
             className="text-xl font-bold text-gray-800 mt-4"
@@ -53,8 +67,22 @@ const Landing = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 2 }}
           >
-            Empowering Creativity, One Thought at a Time: Wellread, where
-            Inspiration Thrives.
+            <Typewriter
+              onInit={(typewriter) => {
+                typewriter
+                  .pauseFor(2000)
+                  .typeString(
+                    "Empowering Creativity, One Thought at a Time: Wellread, where Inspiration Thrives."
+                  )
+                  .start()
+                  .callFunction(() => {
+                    typewriter.stop();
+                  });
+              }}
+              options={{
+                delay: 20,
+              }}
+            />
           </motion.p>
           <motion.button
             className="mt-8 px-6 py-3 bg-white text-blue-900 font-bold rounded-full"
