@@ -1,11 +1,11 @@
-<p align="center">✨The Blogging Application - WELLREAD ✨</p>
+<p align="center">✨The Blogging Application - Wellread ✨</p>
 
 <p align="center">
    
 <center>
 <img  src="https://readme-typing-svg.herokuapp.com?color=45ffaa&size=40&width=900&height=80&lines=Welcome-to-WellRead!"/>
 </center>
-<p>Hello Developers👩‍💻 I am Chirantan Banik, an enthusiastic creator and developer🚀. Join us in exploring the world of ideas and creativity with our blogging application!</p>
+<p>Hello Developers👩‍💻 I am Chirantan Banik, an Open Source Engineer and Project Author🚀. Join us in exploring the world of ideas and creativity with Wellread!</p>
 <br>
 
 
@@ -29,20 +29,20 @@
 <br>
 
 <h2>Overview📌</h2>
-<p>This repository hosts our WellRead blogging application, designed for creative minds to express their thoughts, feelings, and ideas. Whether you're a seasoned writer or just starting out, our platform provides the tools you need to craft compelling blog posts and share them with the world. Join us in building a vibrant community of writers!</p>
+<p>This repository hosts our WellRead blogging application, designed for creative minds to express their thoughts, feelings, and ideas. Whether you're a seasoned writer or just starting out, our platform provides the tools you need to craft compelling blog posts and share them with the world. Join us in building a vibrant community of writers, thinkers and creative people!</p>
 <br>
-<h2>Live Application -- [WellRead Blogging](https://wellread-one.vercel.app/)</h2>
+<h2>Live Application -- [WellRead](https://wellread-one.vercel.app/)</h2>
 <br>
 <h2>Features</h2>
 
-- **User Authentication:** Secure login and registration system.
-- **Create and Edit Posts:** Write and edit blog posts with a user-friendly editor.
-- **Publish and Manage Posts:** Share your posts with the world and manage them effortlessly.
-- **Responsive Design:** Accessible and optimized for various devices.
+- [x]**User Authentication:** Secure login and registration system.
+- [x]**Create and Edit Posts:** Write and edit blog posts with a user-friendly editor.
+- [x]**Publish and Manage Posts:** Share your posts with the world and manage them effortlessly.
+- [x]**Responsive Design:** Accessible and optimized for various devices.
 - **Comments Section:** Engage with readers through comments and feedback.
 - **Tagging and Categorization:** Organize posts by tags and categories for easy navigation.
 - **Social Sharing:** Share your favorite posts on social media platforms.
-- **Search Functionality:** Find specific posts quickly using our search feature.
+- [x]**Search Functionality:** Find specific posts quickly using our search feature.
 
 <h2>Technology Used🚀</h2>
 
@@ -64,24 +64,24 @@
 
 ## How to Contribute?
 
-**1.** Start by forking the [**WellRead_Blogging**](https://github.com/yourusername/WellRead_Blogging) repository. Click on the <a href="https://github.com/yourusername/WellRead_Blogging/fork"><img src="https://i.imgur.com/G4z1kEe.png" height="21" width="21"></a> symbol at the top right corner.
+**1.** Start by forking the [**Wellread**](https://github.com/yourusername/Wellread) repository. Click on the <a href="https://github.com/yourusername/Wellread/fork"><img src="https://i.imgur.com/G4z1kEe.png" height="21" width="21"></a> symbol at the top right corner.
 
 **2.** Clone your forked repository:
 
 ```bash
-git clone https://github.com/<your-github-username>/WellRead_Blogging
+git clone https://github.com/<your-github-username>/Wellread
 ```
 
 **3.** Navigate to the project directory:
 
 ```bash
-cd WellRead_Blogging
+cd Wellread
 ```
 
 **4.** Set upstream command:
 
 ```bash
-git remote add upstream https://github.com/yourusername/WellRead_Blogging
+git remote add upstream https://github.com/yourusername/Wellread
 ```
 
 **5.** Create a new branch:
@@ -122,5 +122,25 @@ Show some ❤️&nbsp; by giving a star ⭐ to this repository.
 For more details, see the [LICENSE](https://github.com/chirantanbanik/Wellread/blob/docs/LICENSE) file.
 <p align="right"><a href="#top"><img src="https://img.shields.io/badge/Back%20To%20Top-Blue?style=plastic" alt="Back To Top"></a></p>
 
----
+## Project Author and Maintainer
+<td>
+   
+Chirantan Banik
+<p align="center">
+<img src = "https://github.com/chirantanbanik/Wellread/assets/71392444/8f0b938d-41ae-49c1-be6a-55c24d011a52"  height="120" alt="Chirantan Banik">
+</p>
+<p align="center">
+<a href = "https://github.com/chirantanbanik">
+<img src = "http://www.iconninja.com/files/241/825/211/round-collaboration-social-github-code-circle-network-icon.svg" width="36" height = "36"/></a>
+<a href = "https://www.linkedin.com/in/chirantanbanik/">
+<img src = "http://www.iconninja.com/files/863/607/751/network-linkedin-social-connection-circular-circle-media-icon.svg" width="36" height="36"/>
+</a>
+</p>
+</td>
 
+## Contributors of Wellread
+<a href="https://github.com/chirantanbanik/Wellread/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=chirantanbanik/Wellread" />
+</a>
+
+---
