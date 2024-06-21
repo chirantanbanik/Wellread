@@ -12,7 +12,7 @@ import { AiOutlineCloseCircle } from "react-icons/ai";
 function Login() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit,formState: { errors } } = useForm();
     const [error, setError] = useState("");
     const [showPassword, setShowPassword] = useState(false);
     const [rememberMe, setRememberMe] = useState(false);
@@ -25,8 +25,21 @@ function Login() {
             navigate("/");
         }
     }, [dispatch, navigate]);
-
+    const invalid = (data) => {
+        console.log("Form Errors:", errors);
+        if (errors.email) {
+          toast.error(errors.email.message);
+        }
+        else if (errors.password) {
+            toast.error(errors.password.message);
+          }
+      };
     const login = (data) => {
+        console.log()
+        console.log(data)
+       if(data){
+
+       }else{
         authService.login(data)
             .then(session => {
                 if (session) {
@@ -48,6 +61,7 @@ function Login() {
                 toast.error(error.message);
                 setError(error.message);
             });
+        }
     };
 
     const togglePasswordVisibility = () => {
@@ -74,7 +88,7 @@ function Login() {
                     </span>
                 </div>
                 <h2 className="text-center text-2xl font-bold leading-tight">Login to your account</h2>
-                <form onSubmit={handleSubmit(login)} className='mt-8'>
+                <form onSubmit={handleSubmit(login,invalid)} className='mt-8'>
                     <div className='space-y-5'>
                         <div className='space-y-2'>
                             <div className='text-left font-medium ml-1'>Email: </div>
@@ -82,12 +96,18 @@ function Login() {
                                 placeholder="Enter your Email"
                                 type="email"
                                 {...register("email", {
-                                    required: true,
+                                    required: "Email is required",
+                                    
                                     validate: {
                                         matchPattern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
                                             "Email address must be a valid address",
+                                        
                                     }
+                                    
+                                 
+                                    
                                 })}
+                                
                             />
                         </div>
                         <div className='space-y-2'>
@@ -97,7 +117,10 @@ function Login() {
                                     type={showPassword ? 'text' : 'password'}
                                     placeholder="Enter your password"
                                     {...register("password", {
-                                        required: true,
+                                         required: "password is required",
+                                         matchPattern: (value) => /^.{1,}$/.test(value) ||
+                                         "Email address must be a valid address",
+                                      
                                     })}
                                 />
                                 <span
