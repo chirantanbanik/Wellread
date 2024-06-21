@@ -38,7 +38,10 @@ function App() {
         <ScrollButton/> 
         <Footer />    
       </div>
-      <Toaster />
+      <Toaster
+  position="top-center"
+  reverseOrder={false}
+/>
     </div>
   ) : null
 }
