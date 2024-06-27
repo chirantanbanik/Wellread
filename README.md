@@ -35,14 +35,14 @@
 <br>
 <h2>Features</h2>
 
-- [x]**User Authentication:** Secure login and registration system.
-- [x]**Create and Edit Posts:** Write and edit blog posts with a user-friendly editor.
-- [x]**Publish and Manage Posts:** Share your posts with the world and manage them effortlessly.
-- [x]**Responsive Design:** Accessible and optimized for various devices.
-- **Comments Section:** Engage with readers through comments and feedback.
-- **Tagging and Categorization:** Organize posts by tags and categories for easy navigation.
-- **Social Sharing:** Share your favorite posts on social media platforms.
-- [x]**Search Functionality:** Find specific posts quickly using our search feature.
+- [x] **User Authentication:** Secure login and registration system.
+- [x] **Create and Edit Posts:** Write and edit blog posts with a user-friendly editor.
+- [x] **Publish and Manage Posts:** Share your posts with the world and manage them effortlessly.
+- [x] **Responsive Design:** Accessible and optimized for various devices.
+- [ ] **Comments Section:** Engage with readers through comments and feedback.
+- [ ] **Tagging and Categorization:** Organize posts by tags and categories for easy navigation.
+- [ ] **Social Sharing:** Share your favorite posts on social media platforms.
+- [x] **Search Functionality:** Find specific posts quickly using our search feature.
 
 <h2>Technology Used🚀</h2>
 
