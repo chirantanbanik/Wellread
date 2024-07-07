@@ -2,6 +2,9 @@ import React, { useRef } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import Typewriter from "typewriter-effect";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 
 const Landing = () => {
   const aboutRef = useRef(null);
@@ -30,6 +33,33 @@ const Landing = () => {
     animate: { opacity: 1, y: 0 },
     transition: { duration: 1 },
   };
+
+  const settings = {
+    className: "center",
+    centerMode: true,
+    infinite: true,
+    centerPadding: "60px",
+    slidesToShow: 3,
+    speed: 500,
+  };
+
+  const featureData = [
+    {
+      title: "Share Your Journey",
+      description:
+        "Every creative journey is unique, and at WellRead, we celebrate that uniqueness. Share your stories, experiences, and insights with our community. Whether you’re just starting out or you’re an experienced creator, your journey can inspire others and spark new ideas.",
+    },
+    {
+      title: "Explore New Ideas",
+      description:
+        "WellRead is a hub of creativity, where you can explore a diverse range of ideas and perspectives. From thought-provoking articles and essays to imaginative fiction and poetry, there’s always something new to discover. Dive into our library of user-generated content and let your imagination roam free.",
+    },
+    {
+      title: "Resources and Tools",
+      description:
+        "We provide a variety of resources and tools to help you enhance your creativity. Whether you need writing prompts, artistic challenges, or tips on improving your craft, WellRead has you covered. Our goal is to equip you with everything you need to succeed in your creative endeavors.",
+    },
+  ];
 
   return (
     <div className="flex-1 flex flex-col justify-center items-center text-center bg-sky-blue">
@@ -126,7 +156,7 @@ const Landing = () => {
         transition={featuresAnimation.transition}
       >
         <motion.div
-          className="container mx-auto md:px-6 px-2"
+          className="container mx-auto px-2"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
@@ -139,82 +169,39 @@ const Landing = () => {
           >
             Features
           </motion.h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <motion.div
-              className="feature p-6 bg-white rounded-lg shadow-lg"
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              whileHover={{
-                scale: 1.07,
-                boxShadow: "0px 20px 40px rgba(0, 0, 0, 0.15)",
-                backgroundColor: "#f0f4f8",
-                color: "#1a202c",
-                cursor: "default",
-              }}
-            >
-              <h3 className="text-2xl font-bold mb-4 text-blue-900">
-                Share Your Journey
-              </h3>
-              <p className="text-lg font-semibold">
-                Every creative journey is unique, and at WellRead, we celebrate
-                that uniqueness. Share your stories, experiences, and insights
-                with our community. Whether you’re just starting out or you’re
-                an experienced creator, your journey can inspire others and
-                spark new ideas.
-              </p>
-            </motion.div>
-            <motion.div
-              className="feature p-6 bg-white rounded-lg shadow-lg"
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              whileHover={{
-                scale: 1.07,
-                boxShadow: "0px 20px 40px rgba(0, 0, 0, 0.15)",
-                backgroundColor: "#f0f4f8",
-                color: "#1a202c",
-                cursor: "default",
-              }}
-            >
-              <h3 className="text-2xl font-bold mb-4 text-blue-900">
-                Explore New Ideas
-              </h3>
-              <p className="text-lg font-semibold">
-                WellRead is a hub of creativity, where you can explore a diverse
-                range of ideas and perspectives. From thought-provoking articles
-                and essays to imaginative fiction and poetry, there’s always
-                something new to discover. Dive into our library of
-                user-generated content and let your imagination roam free.
-              </p>
-            </motion.div>
-            <motion.div
-              className="feature p-6 bg-white rounded-lg shadow-lg"
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              whileHover={{
-                scale: 1.07,
-                boxShadow: "0px 20px 40px rgba(0, 0, 0, 0.15)",
-                backgroundColor: "#f0f4f8",
-                color: "#1a202c",
-                cursor: "default",
-              }}
-            >
-              <h3 className="text-2xl font-bold mb-4 text-blue-900">
-                Resources and Tools
-              </h3>
-              <p className="text-lg font-semibold">
-                We provide a variety of resources and tools to help you enhance
-                your creativity. Whether you need writing prompts, artistic
-                challenges, or tips on improving your craft, WellRead has you
-                covered. Our goal is to equip you with everything you need to
-                succeed in your creative endeavors.
-              </p>
-            </motion.div>
-          </div>
+          <Slider {...settings}>
+            {featureData.map((feature, index) => (
+              <motion.div
+                key={index}
+                className="feature-item p-6 mx-10 my-4 bg-white rounded-lg shadow-lg transform transition-transform duration-300"
+              >
+                <h3 className="text-2xl font-bold mb-4 text-blue-900">
+                  {feature.title}
+                </h3>
+                <p className="text-lg font-semibold">{feature.description}</p>
+              </motion.div>
+            ))}
+          </Slider>
         </motion.div>
       </motion.section>
+      <style jsx>{`
+        .slick-slide {
+          margin: 0 20px; 
+        }
+        .feature-item {
+          height: 350px;
+          transition: transform 0.5s ease, box-shadow 0.5s ease, border-radius 0.5s ease;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        } 
+        .feature-item:hover {
+          scale: 1.07;
+          box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+          border-radius: 10%;
+        } 
+          .slick-track {
+          margin: 0;
+          }
+      `}</style>
 
       <motion.section
         className="w-full py-20 bg-white text-gray-800"
