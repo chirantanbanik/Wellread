@@ -4,7 +4,7 @@ import { Container, PostCard } from "../components";
 
 function AllPosts() {
   const [posts, setPosts] = useState([]);
-  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     appwriteService.getPosts([]).then((posts) => {
